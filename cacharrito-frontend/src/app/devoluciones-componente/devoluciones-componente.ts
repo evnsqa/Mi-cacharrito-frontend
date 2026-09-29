@@ -1,7 +1,7 @@
 
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { Alquileres } from '../entidades/alquileres';
 import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
 
@@ -14,7 +14,7 @@ import { AlquilerServicio } from '../servicios/alquiler-servicio';
 
 export class DevolucionesComponente implements OnInit {
   
-  alquileresEntregados = signal<any[]>([]);
+  alquileresEntregados = signal<Alquileres[]>([]);
 
   paginaActual = signal(1);
   itemsPorPagina = 10;
@@ -69,22 +69,6 @@ export class DevolucionesComponente implements OnInit {
 
   devolverVehiculo(id: number): void {
 
-    const valor = prompt(
-      'Ingrese el valor extra del alquiler:'
-    );
-
-    if (valor === null) {
-      return;
-    }
-
-    const valorExtra = Number(valor);
-
-    if (isNaN(valorExtra) || valorExtra < 0) {
-      alert('Ingrese un valor válido.');
-
-      return;
-    }
-
     const confirmar = confirm(
       '¿Está seguro de que desea devolver este vehículo?'
     );
@@ -93,22 +77,17 @@ export class DevolucionesComponente implements OnInit {
       return;
     }
 
-    this.alquilerServicio
-      .devolverVehiculo(id, valorExtra).subscribe({
-        next: () => {
-          alert('Vehículo devuelto correctamente');
-
-          this.cargarAlquileres();
-        },
-
-        error: (err) => {
-          alert('Error al devolver el vehículo');
-
-          console.error(err);
-        }
-      });
-  }
-
+    this.alquilerServicio.devolverVehiculo(id).subscribe({
+      next: () => {
+        alert('Vehículo devuelto correctamente');
+        this.cargarAlquileres();
+      },
+      error: (err) => {
+        alert('Error al devolver el vehículo');
+        console.error(err);
+      }
+    });
+}
   cambiarPagina(nuevaPagina: number): void {
     if (
       nuevaPagina >= 1 &&

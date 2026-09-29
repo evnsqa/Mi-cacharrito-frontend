@@ -1,20 +1,24 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
+import { FormsModule } from '@angular/forms';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
+import { Alquileres } from '../entidades/alquileres';
 
 @Component({
-  imports: [CommonModule, NavAdminComponente],
+  imports: [CommonModule, NavAdminComponente, FormsModule],
   selector: 'app-entregar-vehiculo-componente',
   styleUrl: './entrega-vehiculo-componente.css',
   templateUrl: './entrega-vehiculo-componente.html',
 })
 export class EntregarVehiculoComponente implements OnInit {
   
-  alquileresPendientes = signal<any[]>([]);
-
+  alquileresPendientes = signal<Alquileres[]>([]);
   paginaActual = signal(1);
   itemsPorPagina = 10;
+
+  placaBuscada = '';
+
   datosPaginados = computed(() => {
     const inicio = (this.paginaActual() - 1) * this.itemsPorPagina;
     const fin = inicio + this.itemsPorPagina;
@@ -54,6 +58,24 @@ export class EntregarVehiculoComponente implements OnInit {
     });
 
   }
+
+  buscarPorPlaca():void {
+    const placa = this.placaBuscada.trim().toLowerCase();
+
+    if (placa === '') {
+      this.cargarAlquileres();
+      return;
+
+  }
+
+  const resultados = this.alquileresPendientes().filter(
+    alquiler => alquiler.vehiculos?.placa?.toLowerCase() === placa
+    );
+
+    this.alquileresPendientes.set(resultados);
+    this.paginaActual.set(1);
+  }
+
 
   entregarVehiculo(placa: string): void {
 

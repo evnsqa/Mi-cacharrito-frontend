@@ -8,11 +8,12 @@
         <h3>Ingrese la placa del vehículo:</h3>
     </div>
     <div class="input-group buscador">
-        <inputtype="text"class="form-control"placeholder="Ingrese la placa">
-        <button type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-        </button>
-    </div>
+    <input 
+        type="text" class="form-control" placeholder="Ingrese la placa"[(ngModel)]="placaBuscada">
+        <button type="button" class="btn btn-primary"(click)="buscarPorPlaca()">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
 </section>
 
 <hr>
@@ -35,23 +36,29 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let alquiler of datosPaginados()">
-                    <td class="text-center">{{ alquiler.numeroAlquiler }}</td>
-                    <td class="text-center">{{ alquiler.usuario?.nombreCompleto }}</td>
-                    <td class="text-center">{{ alquiler.vehiculos?.placa }}</td>
-                    <td class="text-center">{{ alquiler.fechaInicio }}</td>
-                    <td class="text-center">{{ alquiler.fechaEntrega }}</td>
-                    <td class="text-center">{{ alquiler.estado }}</td>
 
-                    <td class="text-center">
-                        <button type="button"class="btn btn-primary"(click)="entregarVehiculo(alquiler.vehiculos?.placa)">ENTREGAR</button>
-                    </td>
-                </tr>
-                
-                <tr *ngIf="alquileresPendientes().length === 0">
-                    <td colspan="7" class="text-center">No hay alquileres pendientes.</td>
-                </tr>
-            </tbody>
+    @for(alquiler of datosPaginados(); track alquiler.numeroAlquiler){
+
+        <tr>
+
+            <td class="text-center">{{ alquiler.numeroAlquiler }}</td>
+            <td class="text-center">{{ alquiler.usuario?.nombreCompleto }}</td>
+            <td class="text-center">{{ alquiler.vehiculos?.placa }}</td>
+            <td class="text-center">{{ alquiler.fechaInicio }}</td>
+            <td class="text-center">{{ alquiler.fechaEntrega }}</td>
+            <td class="text-center">{{ alquiler.estado }}</td>
+            <td class="text-center">
+                <button type="button"class="btn btn-primary"(click)="entregarVehiculo(alquiler.vehiculos.placa)">ENTREGAR</button>
+            </td>
+        </tr>
+    } @empty {
+        <tr>
+            <td colspan="7" class="text-center">No hay vehiculos pendientes por entregar.</td>
+        </tr>
+
+    }
+
+</tbody>
         </table>
     </div>
     

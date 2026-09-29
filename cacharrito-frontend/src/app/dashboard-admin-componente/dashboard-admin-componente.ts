@@ -1,9 +1,7 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
-
 import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
-
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
-
+import { Alquileres } from '../entidades/alquileres';
 @Component({
   imports: [NavAdminComponente],
   selector: 'app-dashboard-admin-componente',
@@ -13,7 +11,7 @@ import { AlquilerServicio } from '../servicios/alquiler-servicio';
 
 export class DashboardAdminComponente implements OnInit {
 
-  alquileresPendientes = signal<any[]>([]);
+  alquileresPendientes = signal<Alquileres[]>([]);
   
   paginaActual = signal(1);
   itemsPorPagina = 10;

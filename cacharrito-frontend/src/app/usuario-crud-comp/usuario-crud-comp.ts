@@ -3,9 +3,11 @@ import { UsuarioServicio } from '../servicios/usuario-servicio';
 import { Usuario } from '../entidades/usuario';
 import { Navegacion } from '../navegacion/navegacion';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
 
 @Component({
-  imports: [Navegacion, FormsModule],
+  imports: [Navegacion, FormsModule, RouterModule, NavAdminComponente],
   selector: 'app-usuario-crud-comp',
   styleUrl: './usuario-crud-comp.css',
   templateUrl: './usuario-crud-comp.html',

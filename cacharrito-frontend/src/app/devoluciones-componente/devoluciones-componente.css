@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'SairaSemiCondensed-Bold';
+    src: url('/recursos/SairaSemiCondensed-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SairaSemiCondensed-Light';
+    src: url('/recursos/SairaSemiCondensed-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SairaSemiCondensed-Medium';
+    src: url('/recursos/SairaSemiCondensed-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container {
+    margin-top: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.Tittle {
+    text-align: center;
+    font-family: 'SairaSemiCondensed-Bold';
+    color: #255C7E;
+}
+
+.Tittle h1 {
+    font-size: 32px;
+}
+
+.text {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.text h3 {
+    font-family: 'SairaSemiCondensed-Medium';
+    font-size: 17px;
+    color: black;
+}
+
+.tableDevolverV {
+    width: 100%;
+}
+
+.tableDevolverV table {
+    width: 100%;
+}
+
+.tableDevolverV th {
+    font-family: 'SairaSemiCondensed-Medium';
+    color: white;
+    background-color: #255C7E;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tableDevolverV td {
+    font-family: 'SairaSemiCondensed-Light';
+    color: black;
+    background-color: rgba(171, 170, 170, 0.673);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tableDevolverV .btn-primary {
+    font-family: 'SairaSemiCondensed-Medium';
+    background-color: #255C7E;
+    border-color: #255C7E;
+}
+
+.tableDevolverV .btn-primary:hover {
+    background-color: #1d4b68;
+    border-color: #1d4b68;
+}
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.paginacion span {
+    font-family: 'SairaSemiCondensed-Light';
+    color: black;
+}
+
+.paginacion button {
+    width: 34px;
+    height: 34px;
+    font-family: 'SairaSemiCondensed-Medium';
+    color: #255C7E;
+    background-color: white;
+    border: 1px solid #255C7E;
+    border-radius: 4px;
+}
+
+.paginacion button:hover:not(:disabled) {
+    color: white;
+    background-color: #255C7E;
+}
+
+.paginacion button:disabled {
+    color: #aaa;
+    border-color: #ccc;
+    background-color: #f5f5f5;
+}
