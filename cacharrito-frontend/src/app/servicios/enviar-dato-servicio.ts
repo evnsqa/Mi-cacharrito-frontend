@@ -7,6 +7,8 @@ import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 export class EnviarDatoServicio {
     private platformId = inject(PLATFORM_ID);
     public vehiculoSignal = signal<any>(this.obtenerVehiculoInicial());
+    
+    public tipoVehiculoSignal = signal<any>(this.obtenerTipoVehiculoInicial());
 
     private obtenerVehiculoInicial() {
 
@@ -26,5 +28,27 @@ export class EnviarDatoServicio {
     limpiar() {
         this.vehiculoSignal.set(null);
         localStorage.removeItem('vehiculoActual');
+    }
+
+
+
+    private obtenerTipoVehiculoInicial() {
+
+        if (isPlatformBrowser(this.platformId)) {
+            const tipoVehiculoGuardado = localStorage.getItem('tipoVehiculoActual');
+            return tipoVehiculoGuardado ? JSON.parse(tipoVehiculoGuardado) : null;
+        }
+        return null;
+    }
+
+    enviarT(datosTipoVehiculo: any) {
+        console.log('Guardando dato:', datosTipoVehiculo);
+        this.tipoVehiculoSignal.set(datosTipoVehiculo);
+        localStorage.setItem('tipoVehiculoActual', JSON.stringify(datosTipoVehiculo));
+    }
+
+    limpiarT() {
+        this.tipoVehiculoSignal.set(null);
+        localStorage.removeItem('tipoVehiculoActual');
     }
 }

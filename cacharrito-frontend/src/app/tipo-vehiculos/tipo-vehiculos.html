@@ -1,96 +1,136 @@
 <br>
+
 <div class="container">
-  <h1>ESTA ES LA PÁGINA DE TIPOS DE VEHÍCULO</h1><br>
+  <h1>ESTA ES LA PAGINA DE TIPO DE VEHÍCULOS</h1><br>
+
   <hr>
   <button class="btn btn-primary" (click)="abrirModal()">Registrar</button>
   <hr>
   <br>
 
- 
   <div class="row g-2 align-items-center mb-4">
     <div class="col-auto">
-      <select class="form-select" [(ngModel)]="busqueda" name="busqueda">
+      <select class="form-select buscarS" [(ngModel)]="busqueda" name="busqueda">
         <option value="" disabled selected>Buscar por:</option>
+        <option value="id">Id</option>
         <option value="nombre">Nombre</option>
       </select>
     </div>
 
-    @if (busqueda === 'nombre') {
+
+    @if (busqueda === 'id') {
     <div class="col-sm-4 col-md-3">
-      <input type="text" id="nombre" name="nombreBusqueda" class="form-control" placeholder="Ingrese el nombre" [(ngModel)]="textoBusqueda">
+      <input type="number" id="id" name="idBusqueda" class="form-control" placeholder="Ingrese el id"
+        [(ngModel)]="idTV">
     </div>
     <div class="col-auto">
-      <button type="button" (click)="buscar()" class="btn btn-primary">Buscar</button>
+      <button type="button" (click)="verId()" class="btn btn-primary">Buscar</button>
     </div>
     <div class="col-auto">
-      <button type="button" (click)="limpiarBusqueda()" class="btn btn-secondary">Limpiar</button>
+      <button type="button" (click)="listar(); idTV = null" class="btn btn-secondary">Limpiar</button>
     </div>
     }
+
+    @if (busqueda === 'nombre') {
+    <div class="col-sm-4 col-md-3">
+      <input type="text" id="nombre" name="nombreBusqueda" class="form-control" placeholder="Ingrese el nombre"
+        [(ngModel)]="nombreTV">
+    </div>
+    <div class="col-auto">
+      <button type="button" (click)="verNombre()" class="btn btn-primary">Buscar</button>
+    </div>
+    <div class="col-auto">
+      <button type="button" (click)="listar(); nombreTV = ''" class="btn btn-secondary">Limpiar</button>
+    </div>
+    }
+
   </div>
 
   <div class="table-responsive">
+
     <table class="table table-striped table-hover table-bordered">
       <thead>
         <tr>
           <th scope="col" class="text-center">ID</th>
           <th scope="col" class="text-center">NOMBRE</th>
-          <th scope="col" class="text-center">ACCIONES</th>
         </tr>
       </thead>
+
       <tbody>
-        @for(tipo of listaTipos; track tipo.idTipoVehiculo || tipo.idTipo){
+        @for(i of datosPaginados(); track $index){
         <tr>
-          <td class="text-center">{{ tipo.idTipoVehiculo || tipo.idTipo }}</td>
-          <td>{{ tipo.nombre }}</td>
-          <td class="text-center">
-            
-            <!-- Botón Eliminar (Rojo) -->
-            <button type="button" class="btn btn-danger m-2" (click)="eliminar(tipo.idTipoVehiculo || tipo.idTipo)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+          <td>{{i.idTipoVehiculo}}</td>
+          <td>{{i.nombre}}</td>
+          <td>
+            <button type="button" class="btn btn-danger m-2" (click)="eliminar(i.idTipoVehiculo)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                viewBox="0 0 16 16">
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                <path
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
               </svg>
             </button>
 
-            <!-- Botón Editar (Verde) -->
-            <button type="button" class="btn btn-success m-2" (click)="actualizar(tipo)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+            <button type="button" class="btn btn-success m-2" (click)="actualizar(i)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
               </svg>
             </button>
+
           </td>
         </tr>
         }
       </tbody>
     </table>
+
+    <div class="paginacion">
+      <button (click)="cambiarPagina(paginaActual() - 1)" [disabled]="paginaActual() === 1">
+        < </button>
+
+          <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
+
+          <button (click)="cambiarPagina(paginaActual() + 1)" [disabled]="paginaActual() === totalPaginas()">
+            >
+          </button>
+    </div>
   </div>
 
-  
+
   <div class="modal" tabindex="-1" id="registro">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           @if(!bandera){
-          <h5 class="modal-title tituloM">REGISTRAR TIPO</h5>
+          <h5 class="modal-title tituloM">REGISTRAR</h5>
           } @else{
-          <h5 class="modal-title tituloM">EDITAR TIPO</h5>
+          <h5 class="modal-title tituloM">EDITAR</h5>
           }
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cerrarModal()"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="cerrarModal()"></button>
         </div>
         <div class="modal-body">
-          <form #formTipo="ngForm" (ngSubmit)="guardar()">
+          <form #formTipoVehiculo="ngForm" (ngSubmit)="guardar()">
+
             <div class="mb-3">
               <label class="form-label">Nombre</label>
-              <input type="text" class="form-control" [(ngModel)]="tipoActual.nombre" name="nombre" required>
+              <input for="inputNombre" type="text" class="form-control" [(ngModel)]="tipoVehiculo.nombre" name="nombre" required>
             </div>
+
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
-              <button type="submit" class="btn btn-primary" [disabled]="formTipo.invalid">Guardar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                (click)="cerrarModal()">Cerrar</button>
             </div>
+            <button type="submit" class="btn btn-primary" [disabled]="formTipoVehiculo.invalid">Guardar</button>
+
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </div>

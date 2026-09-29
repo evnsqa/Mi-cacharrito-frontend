@@ -1,4 +1,4 @@
 export class TipoVehiculo {
-    nombre: string;
-    
+    idTipoVehiculo:number;
+    nombre:string;  
 }

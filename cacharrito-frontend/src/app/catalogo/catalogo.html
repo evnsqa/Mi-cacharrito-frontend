@@ -1,8 +1,9 @@
 <app-navegacion></app-navegacion>
-<div class="container-fluid p-4" style="background-color: #f4f7fc; min-height: 100vh;">
+<div class="container-fluid p-4 wrapper-catalogo">
 
   <div class="d-flex align-items-center p-4 bg-white rounded-top-4 shadow-sm">
-    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-4 me-3 d-flex align-items-center justify-content-center" style="font-size: 2rem;">
+    <div
+      class="bg-primary bg-opacity-10 text-primary p-3 rounded-4 me-3 d-flex align-items-center justify-content-center icono-grande">
       <i class="bi bi-tags-fill"></i>
     </div>
     <div>
@@ -11,29 +12,31 @@
     </div>
   </div>
 
- 
   <div class="bg-white p-5 rounded-bottom-4 shadow-sm border-top">
     <div class="row g-4">
-      
-     
-      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let tipo of listaTipos">
-        
-        <div class="card h-100 border rounded-4 text-center p-4 tarjeta-hover shadow-sm" (click)="irAVehiculos(tipo)">
+
+      @for(tipoVehiculo of listaTipoVehiculos(); track $index) {
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 border rounded-4 text-center p-4 tarjeta-hover shadow-sm"
+          (click)="irAVehiculos(tipoVehiculo)">
           <div class="card-body p-0 d-flex flex-column align-items-center justify-content-center">
-            
-            <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center mb-4 icono-vehiculo" style="width: 80px; height: 80px; font-size: 2.5rem;">
+
+            <div
+              class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center mb-4 icono-vehiculo contenedor-icono">
               <i class="bi bi-car-front-fill"></i>
             </div>
-            
-            <h4 class="fw-bold mb-4 texto-vehiculo text-dark">{{ tipo.nombre }}</h4>
-            
-            <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center flecha-vehiculo" style="width: 40px; height: 40px; font-size: 1.2rem;">
+
+            <h4 class="fw-bold mb-4 texto-vehiculo text-dark">{{ tipoVehiculo.nombre }}</h4>
+
+            <div
+              class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center flecha-vehiculo contenedor-flecha">
               <i class="bi bi-arrow-right"></i>
             </div>
 
           </div>
         </div>
       </div>
+      }
 
     </div>
   </div>
