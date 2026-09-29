@@ -28,27 +28,11 @@
 
                 <tr *ngFor="let alquiler of datosPaginados()">
 
-                    <td class="text-center">
-                    {{ alquiler.numeroAlquiler }}
-                    </td>
-
-                    <td class="text-center">
-                    {{ alquiler.vehiculos?.tipo }}
-                    </td>
-
-                    <td class="text-center">
-                    {{ alquiler.vehiculos?.placa }}
-                    </td>
-
-                    <td class="text-center">
-                    {{ alquiler.fechaInicio }} <br>
-                    hasta <br>
-                    {{ alquiler.fechaEntrega }}
-                    </td>
-
-                    <td class="text-center">
-                    {{ alquiler.estado }}
-                    </td>
+                    <td class="text-center">{{ alquiler.numeroAlquiler }}</td>
+                    <td class="text-center">{{ alquiler.vehiculos?.tipo }}</td>
+                    <td class="text-center">{{ alquiler.vehiculos?.placa }}</td>
+                    <td class="text-center">{{ alquiler.fechaInicio }} <br>hasta <br>{{ alquiler.fechaEntrega }}</td>
+                    <td class="text-center">{{ alquiler.estado }}</td>
 
                     <td class="text-center">
                         <button type="button" class="btn btn-danger" (click)="cancelarAlquiler(alquiler.numeroAlquiler)">Cancelar</button>
@@ -64,22 +48,16 @@
     </div>
 
             <div class="paginacion">
-            <button
-                type="button"(click)="cambiarPagina(paginaActual() - 1)" [disabled]="paginaActual() === 1">
+            <button type="button"(click)="cambiarPagina(paginaActual() - 1)" [disabled]="paginaActual() === 1">
                 <
             </button>
 
-            <span>
-                Página {{ paginaActual() }} de {{ totalPaginas() }}
-            </span>
+            <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
 
-            <button
-                type="button"(click)="cambiarPagina(paginaActual() + 1)" [disabled]="paginaActual() === totalPaginas()">
+            <button type="button"(click)="cambiarPagina(paginaActual() + 1)" [disabled]="paginaActual() === totalPaginas()">
                 >
             </button>
-
             </div>
-
         </div>
         </div>
     </div>

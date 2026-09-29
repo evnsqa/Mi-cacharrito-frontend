@@ -49,32 +49,25 @@
 </section>
 
 <div class="row justify-content-center">
-
     <div class="col-md-7">
 
         <form (ngSubmit)="aceptarAlquiler()" #alquilerForm="ngForm" class="p-4 formulario-alquiler">
-
             <h5 class="titulo-fechas">Fechas del Alquiler</h5>
-
             <div class="row">
-
                 <div class="col-md-5 mb-3">
                     <label for="fechaInicio" class="form-label fw-bold">Fecha de Inicio</label>
 
-                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio"
-                          required [(ngModel)]="nuevoAlquiler.fechaInicio">
+                    <input type="date" class="form-control" id="fechaInicio" name="fechaInicio"required [(ngModel)]="nuevoAlquiler.fechaInicio">
                 </div>
 
                 <div class="col-md-5 mb-3">
                     <label for="fechaEntrega" class="form-label fw-bold">Fecha de Entrega</label>
 
-                    <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega"
-                          required [(ngModel)]="nuevoAlquiler.fechaEntrega">
+                    <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega"required [(ngModel)]="nuevoAlquiler.fechaEntrega">
                 </div>
+
                 <div class="col-md-2 mb-3 d-flex align-items-end">
-                    <button type="submit" class="boton-aceptar" [disabled]="!alquilerForm.valid">
-                        Aceptar
-                    </button>
+                    <button type="submit" class="boton-aceptar" [disabled]="!alquilerForm.valid">Aceptar</button>
                 </div>
 
             </div>

@@ -12,6 +12,7 @@ import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
 import { NoticiasComponent } from './noticias/noticias';
 import { VehiculoComponente } from './vehiculo-componente/vehiculo-componente';
 import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
+import { DevolucionesComponente} from './devoluciones-componente/devoluciones-componente';
 
 
 export const routes: Routes = [
@@ -34,6 +35,7 @@ export const routes: Routes = [
     { path: "contacto", component: ContactoComponente },
     { path: 'vehiculos-por/:tipo', component: VehiculoComponente },
     { path: 'dashboardAdmin', component: DashboardAdminComponente },
-    { path: "crudUsuario", component: UsuarioCrudComp }
+    { path: "crudUsuario", component: UsuarioCrudComp },
+    { path: "devoluciones", component: DevolucionesComponente}
 
 ];

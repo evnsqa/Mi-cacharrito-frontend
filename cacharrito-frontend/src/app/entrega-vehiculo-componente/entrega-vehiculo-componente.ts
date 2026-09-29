@@ -10,17 +10,13 @@ import { AlquilerServicio } from '../servicios/alquiler-servicio';
   templateUrl: './entrega-vehiculo-componente.html',
 })
 export class EntregarVehiculoComponente implements OnInit {
-
+  
   alquileresPendientes = signal<any[]>([]);
 
   paginaActual = signal(1);
-
   itemsPorPagina = 10;
-
   datosPaginados = computed(() => {
-
     const inicio = (this.paginaActual() - 1) * this.itemsPorPagina;
-
     const fin = inicio + this.itemsPorPagina;
 
     return this.alquileresPendientes().slice(inicio, fin);
@@ -36,15 +32,11 @@ export class EntregarVehiculoComponente implements OnInit {
   constructor(private alquilerServicio: AlquilerServicio) {}
 
   ngOnInit(): void {
-
     this.cargarAlquileres();
-
   }
 
   cargarAlquileres(): void {
-
     this.alquilerServicio.listarAlquileresPendientes().subscribe({
-
       next: (datos) => {
 
         this.alquileresPendientes.set(datos);
@@ -52,7 +44,6 @@ export class EntregarVehiculoComponente implements OnInit {
       },
 
       error: (err) => {
-
         console.error(
           'Error al cargar los alquileres pendientes:',
           err
@@ -71,21 +62,15 @@ export class EntregarVehiculoComponente implements OnInit {
     );
 
     if (confirmar) {
-
       this.alquilerServicio.entregarVehiculo(placa).subscribe({
-
         next: () => {
-
           alert('Vehículo entregado correctamente');
-
           this.cargarAlquileres();
 
         },
 
         error: (err) => {
-
           alert('Error al entregar el vehículo');
-
           console.error(err);
 
         }
