@@ -12,6 +12,7 @@ export class AlquilerServicio {
 
     private guardar = "http://localhost:8080/alquileres/guardarAlquiler/";
     private listarPorUsuario = "http://localhost:8080/alquileres/listarPorUsuario/";
+    private listarEntregados = "http://localhost:8080/alquileres/listarEntregados/";
     private cancelar = "http://localhost:8080/alquileres/cancelarAlquiler/";
     private listarPendientes = "http://localhost:8080/alquileres/listarPendientes/";
     private entregar = "http://localhost:8080/alquileres/entregarVehiculo/";
@@ -26,6 +27,10 @@ export class AlquilerServicio {
     return this.httpCliente.get(this.listarPorUsuario, { params: params });
 }
 
+    listarAlquileresEntregados(): Observable<any> {
+    return this.httpCliente.get(this.listarEntregados);
+}
+
     cancelarAlquiler(id: number): Observable<any> {
     const params = new HttpParams().set("id", id);
     return this.httpCliente.post(this.cancelar, null, { params: params });
@@ -35,18 +40,16 @@ export class AlquilerServicio {
     return this.httpCliente.get(this.listarPendientes);
     }
 
+
     entregarVehiculo(placa: string): Observable<any> {
     const params = new HttpParams().set("placa", placa);
     return this.httpCliente.post(this.entregar, null, { params: params });
     }
 
-    devolverVehiculo(id: number, valorExtra: number): Observable<any> {
-    const params = new HttpParams()
-        .set("id", id)
-        .set("valorExtra", valorExtra);
-
+    devolverVehiculo(id: number): Observable<any> {
+    const params = new HttpParams().set("id", id);
     return this.httpCliente.post(this.devolver, null, { params: params });
-    }
+}
 }
 
 

@@ -1,10 +1,8 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
-
-import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
-
-import { AlquilerServicio } from '../servicios/alquiler-servicio';
 import { CommonModule } from '@angular/common';
-
+import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
+import { AlquilerServicio } from '../servicios/alquiler-servicio';
+import { Alquileres } from '../entidades/alquileres';
 @Component({
   imports: [NavAdminComponente, CommonModule],
   selector: 'app-dashboard-admin-componente',
@@ -14,7 +12,7 @@ import { CommonModule } from '@angular/common';
 
 export class DashboardAdminComponente implements OnInit {
 
-  alquileresPendientes = signal<any[]>([]);
+  alquileresPendientes = signal<Alquileres[]>([]);
   
   paginaActual = signal(1);
   itemsPorPagina = 10;

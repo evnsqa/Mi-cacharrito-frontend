@@ -12,8 +12,8 @@ import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
 import { NoticiasComponent } from './noticias/noticias';
 import { VehiculoComponente } from './vehiculo-componente/vehiculo-componente';
 import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
+import { DevolucionesComponente} from './devoluciones-componente/devoluciones-componente';
 import { CancelarAlquilerComponente } from './cancelar-alquiler-componente/cancelar-alquiler-componente';
-
 
 export const routes: Routes = [
     { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -22,20 +22,16 @@ export const routes: Routes = [
     { path: "registro", component: RegistroUsuario},
     { path: "contacto", component: ContactoComponente},
     { path: "ADMINISTRADOR", component: AdministradorComponente},
-    { path: 'dashboardAdmin', component: DashboardAdminComponente},
-    { path: 'EntregarVehiculo', component: EntregarVehiculoComponente},
+    { path: "dashboardAdmin", component: DashboardAdminComponente},
+    { path: "EntregarVehiculo", component: EntregarVehiculoComponente},
     {path: "crudUsuario", component: UsuarioCrudComp},
     { path: "catalogo", component: CatalogoComponent},
     { path: "noticias", component: NoticiasComponent},
     { path: 'crud', component: UsuarioCrudComp},
     { path: "tipos", component: TipoVehiculosComponent},
-    { path: 'dashboardAdmin', component: DashboardAdminComponente},
-    { path: "inicio", component: InicioComponente },
-    { path: "login", component: InicioSesion },
-    { path: "contacto", component: ContactoComponente },
     { path: 'vehiculos-por/:tipo', component: VehiculoComponente },
-    { path: 'dashboardAdmin', component: DashboardAdminComponente },
     { path: "crudUsuario", component: UsuarioCrudComp },
+    { path: "devoluciones", component: DevolucionesComponente},
     { path: "misAlquileres", component: CancelarAlquilerComponente}
 
 ];
