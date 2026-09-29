@@ -1,159 +1,80 @@
 <app-nav-admin-componente></app-nav-admin-componente>
 
 <section class="container">
-
     <div class="Tittle">
         <h1>ENTREGA DE VEHÍCULOS</h1>
     </div>
-
     <div class="text">
         <h3>Ingrese la placa del vehículo:</h3>
     </div>
-
     <div class="input-group buscador">
-
-        <input
-            type="text"
-            class="form-control"
-            placeholder="Ingrese la placa">
-
-        <button type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-        </button>
-
-    </div>
-
+    <input 
+        type="text" class="form-control" placeholder="Ingrese la placa"[(ngModel)]="placaBuscada">
+        <button type="button" class="btn btn-primary"(click)="buscarPorPlaca()">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
 </section>
 
 <hr>
 
 <div class="container my-4">
-
     <div class="row justify-content-center">
+    <div class="col-md-10">
+    <div class="tableEntregarV">
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">N ALQUILER</th>
+                    <th scope="col" class="text-center">USUARIO</th>
+                    <th scope="col" class="text-center">PLACA</th>
+                    <th scope="col" class="text-center">FECHA INICIO</th>
+                    <th scope="col" class="text-center">FECHA FIN</th>
+                    <th scope="col" class="text-center">ESTADO</th>
+                    <th scope="col" class="text-center">ACCIÓN</th>
+                </tr>
+            </thead>
 
-        <div class="col-md-10">
+            <tbody>
 
-            <div class="tableEntregarV">
+    @for(alquiler of datosPaginados(); track alquiler.numeroAlquiler){
 
-                <table class="table table-striped table-hover table-bordered">
+        <tr>
 
-                    <thead>
+            <td class="text-center">{{ alquiler.numeroAlquiler }}</td>
+            <td class="text-center">{{ alquiler.usuario?.nombreCompleto }}</td>
+            <td class="text-center">{{ alquiler.vehiculos?.placa }}</td>
+            <td class="text-center">{{ alquiler.fechaInicio }}</td>
+            <td class="text-center">{{ alquiler.fechaEntrega }}</td>
+            <td class="text-center">{{ alquiler.estado }}</td>
+            <td class="text-center">
+                <button type="button"class="btn btn-primary"(click)="entregarVehiculo(alquiler.vehiculos.placa)">ENTREGAR</button>
+            </td>
+        </tr>
+    } @empty {
+        <tr>
+            <td colspan="7" class="text-center">No hay vehiculos pendientes por entregar.</td>
+        </tr>
 
-                        <tr>
+    }
 
-                            <th scope="col" class="text-center">
-                                N ALQUILER
-                            </th>
-
-                            <th scope="col" class="text-center">
-                                USUARIO
-                            </th>
-
-                            <th scope="col" class="text-center">
-                                PLACA
-                            </th>
-
-                            <th scope="col" class="text-center">
-                                FECHA INICIO
-                            </th>
-
-                            <th scope="col" class="text-center">
-                                FECHA FIN
-                            </th>
-
-                            <th scope="col" class="text-center">
-                                ESTADO
-                            </th>
-
-                            <th scope="col" class="text-center">
-                                ACCIÓN
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr *ngFor="let alquiler of datosPaginados()">
-
-                            <td class="text-center">
-                                {{ alquiler.numeroAlquiler }}
-                            </td>
-
-                            <td class="text-center">
-                                {{ alquiler.usuario?.nombreCompleto }}
-                            </td>
-
-                            <td class="text-center">
-                                {{ alquiler.vehiculos?.placa }}
-                            </td>
-
-                            <td class="text-center">
-                                {{ alquiler.fechaInicio }}
-                            </td>
-
-                            <td class="text-center">
-                                {{ alquiler.fechaEntrega }}
-                            </td>
-
-                            <td class="text-center">
-                                {{ alquiler.estado }}
-                            </td>
-
-                            <td class="text-center">
-
-                                <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    (click)="entregarVehiculo(alquiler.vehiculos?.placa)">
-
-                                    ENTREGAR
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr *ngIf="alquileresPendientes().length === 0">
-
-                            <td colspan="7" class="text-center">
-                                No hay alquileres pendientes.
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <div class="paginacion">
-
+</tbody>
+        </table>
+    </div>
+    
+    <div class="paginacion">
                 <button
-                    type="button"
-                    (click)="cambiarPagina(paginaActual() - 1)"
-                    [disabled]="paginaActual() === 1">
+                    type="button"(click)="cambiarPagina(paginaActual() - 1)"[disabled]="paginaActual() === 1">
                     <
                 </button>
 
-                <span>
-                    Página {{ paginaActual() }} de {{ totalPaginas() }}
-                </span>
+                <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
 
                 <button
-                    type="button"
-                    (click)="cambiarPagina(paginaActual() + 1)"
-                    [disabled]="paginaActual() === totalPaginas()">
+                    type="button"(click)="cambiarPagina(paginaActual() + 1)"[disabled]="paginaActual() === totalPaginas()">
                     >
                 </button>
-
             </div>
-
         </div>
-
     </div>
-
 </div>

@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectorRef, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
 import { ServiciosTipoVehiculo } from '../servicios/servicios-tipo-vehiculo';
 import { TipoVehiculo } from '../entidades/tipo-vehiculo';
-import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
-import { Navegacion } from '../navegacion/navegacion';
+import { Navegacion } from '../navegacion/navegacion'; // <-- Conservamos este import limpio
 
 @Component({
   selector: 'app-tipo-vehiculos',
-  imports: [CommonModule, FormsModule,Navegacion],
+  imports: [CommonModule, FormsModule, Navegacion], // <-- CORRECCIÓN: Agrega Navegacion aquí para que el HTML reconozca <app-navegacion>
   templateUrl: './tipo-vehiculos.html',
   styleUrls: ['./tipo-vehiculos.css']
 })

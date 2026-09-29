@@ -2,7 +2,7 @@ import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
 import { Navegacion } from '../navegacion/navegacion';
-
+import { Alquileres } from '../entidades/alquileres';
 @Component({
   imports: [CommonModule, Navegacion],
   selector: 'app-cancelar-alquiler-componente',
@@ -11,7 +11,7 @@ import { Navegacion } from '../navegacion/navegacion';
 })
 export class CancelarAlquilerComponente implements OnInit {
 
-  alquileres = signal<any[]>([]);
+  alquileres = signal<Alquileres[]>([]);
 
   paginaActual = signal(1);
 
