@@ -1,9 +1,10 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
+import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, Navegacion],
   selector: 'app-cancelar-alquiler-componente',
   styleUrl: './cancelar-alquiler-componente.css',
   templateUrl: './cancelar-alquiler-componente.html',

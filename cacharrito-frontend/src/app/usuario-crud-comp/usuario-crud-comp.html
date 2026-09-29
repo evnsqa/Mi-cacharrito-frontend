@@ -6,19 +6,21 @@
       <h3 class="fw-bold mb-4">Listado de Usuarios</h3>
 
       <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+
         <div class="w-100" style="max-width: 300px;">
-          <select class="form-select buscarS" name="busqueda">
-            <option value="" disabled selected>Buscar por:</option>
-            <option value="placa">Nombre</option>
-            <option value="nombre">Identificación</option>
-            <option value="tipoVehiculo">Licencia</option>
-            <option value="precio">Telefono</option>
-            <option value="estado">Correo</option>
-          </select>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Buscar por nombre..." [(ngModel)]="busqueda">
+
+            <button class="btn btn-primary" type="button" (click)="buscarUsuario()">
+              Buscar
+            </button>
+          </div>
         </div>
-        <button class="btn btn-primary text-white">
-          <i class="bi bi-plus-lg me-1" href="/registro"></i> Añadir Nuevo Usuario
+
+        <button routerLink="/registro" class="btn btn-primary text-white">
+          <i class="bi bi-plus-lg me-1"></i> Añadir Nuevo Usuario
         </button>
+
       </div>
 
 
@@ -70,7 +72,7 @@
             }
           </tbody>
         </table>
-         <br>
+        <br>
         <div class="paginacion">
           <button (click)="cambiarPagina(paginaActual() - 1)" [disabled]="paginaActual() === 1">
             < </button>

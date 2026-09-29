@@ -3,9 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { Usuario } from '../entidades/usuario';
 import { UsuarioServicio } from '../servicios/usuario-servicio';
 import { Navegacion } from '../navegacion/navegacion';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [FormsModule, Navegacion],
+  imports: [FormsModule, Navegacion, RouterLink],
   selector: 'app-registro-usuario',
   styleUrl: './registro-usuario.css',
   templateUrl: './registro-usuario.html',

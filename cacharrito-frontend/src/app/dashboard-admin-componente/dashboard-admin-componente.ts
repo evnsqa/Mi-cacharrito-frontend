@@ -3,9 +3,10 @@ import { Component, OnInit, signal, computed } from '@angular/core';
 import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
 
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  imports: [NavAdminComponente],
+  imports: [NavAdminComponente, CommonModule],
   selector: 'app-dashboard-admin-componente',
   styleUrl: './dashboard-admin-componente.css',
   templateUrl: './dashboard-admin-componente.html',
