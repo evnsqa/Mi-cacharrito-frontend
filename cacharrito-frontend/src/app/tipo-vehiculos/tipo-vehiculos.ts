@@ -21,7 +21,6 @@ export class TipoVehiculosComponent implements OnInit {
   busqueda: string = ''; 
   textoBusqueda: string = '';
 
-  // 2. Lo inyectamos en el constructor (cdr)
   constructor(private servicio: ServiciosTipoVehiculo, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -33,7 +32,6 @@ export class TipoVehiculosComponent implements OnInit {
       this.listaTipos = datos;
       this.listaTiposOriginal = datos;
       
-      // 3. ¡EL TRUCO MÁGICO! Le damos la orden directa a Angular de repintar la tabla YA MISMO
      this.cdr.markForCheck();
     });
   }
@@ -59,7 +57,7 @@ export class TipoVehiculosComponent implements OnInit {
       this.servicio.modificar(this.tipoActual).subscribe(() => {
         alert("Modificado con éxito");
         this.cerrarModal();
-        this.listar(); // Como listar() ahora tiene el detector de cambios, se actualiza sola
+        this.listar(); 
       });
     } else {
       this.servicio.guardar(this.tipoActual).subscribe(() => {
@@ -80,7 +78,7 @@ export class TipoVehiculosComponent implements OnInit {
     if (confirm('¿Estás seguro de eliminar este tipo de vehículo?')) {
       this.servicio.eliminar(id).subscribe(() => {
         alert("Eliminado con éxito");
-        this.listar(); // ¡Se actualiza sola!
+        this.listar(); 
       });
     }
   }
