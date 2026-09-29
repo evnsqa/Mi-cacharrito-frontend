@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef, signal, computed } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
 import { ServiciosTipoVehiculo } from '../servicios/servicios-tipo-vehiculo';
 import { TipoVehiculo } from '../entidades/tipo-vehiculo';
 
@@ -17,6 +18,8 @@ export class TipoVehiculosComponent implements OnInit {
   busqueda: string = ""; 
   idTV: number | null = null;
   nombreTV: string = "";
+
+  private dataService = inject(EnviarDatoServicio);
 
   ngOnInit(): void {
     this.listar();
@@ -54,6 +57,7 @@ export class TipoVehiculosComponent implements OnInit {
       console.log(dato)
       this.cerrarModal()
       this.listar();
+      this.enviarTipoVehiculo(dato);
     })
   }
 
@@ -115,6 +119,13 @@ export class TipoVehiculosComponent implements OnInit {
       }
     });
     this.cdr.markForCheck();
+  }
+
+  enviarTipoVehiculo(t: TipoVehiculo) {
+    console.log(t);
+    this.dataService.enviar(t);
+    alert(`Tipo de Vehiculo "${t.nombre}" enviado correctamente.`);
+    this.cerrarModal();
   }
 
   paginaActual = signal(1);
