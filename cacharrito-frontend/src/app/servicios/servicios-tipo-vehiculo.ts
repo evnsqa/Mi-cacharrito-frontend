@@ -8,39 +8,31 @@ import { TipoVehiculo } from '../entidades/tipo-vehiculo';
 })
 export class ServiciosTipoVehiculo {
 
-  
-  private apiUrl = 'http://localhost:8080/tipovehiculo';
-  private apiLista = 'http://localhost:8080/tipovehiculo/t/listarTodo/';
-  private apiGuardar = 'http://localhost:8080/tipovehiculo/t/guardarTipoVehiculo/';
-  private apiModificar = 'http://localhost:8080/tipovehiculo/t/modificarTipoVehiculo/';
-  private apiEliminar = 'http://localhost:8080/tipovehiculo/t/eliminarTipoVehiculo/';
-  private apiNombre = 'http://localhost:8080/tipovehiculo/t/buscarNom/';
+  constructor(private httpCliente: HttpClient) { }
+  private listaTV = 'http://localhost:8080/tipovehiculo/t/listarTodo/';
+  private guardarTV = 'http://localhost:8080/tipovehiculo/t/guardarTipoVehiculo/';
+  private eliminarTV = 'http://localhost:8080/tipovehiculo/t/eliminarTipoVehiculo/';
+  private buscarId = 'http://localhost:8080/tipovehiculo/t/buscarId/';
+  private buscarN = 'http://localhost:8080/tipovehiculo/t/buscarNom/';
 
-
-  constructor(private http: HttpClient) {}
-
-  
-  listarTodos(): Observable<any> {
-    return this.http.get(`${this.apiLista}`);
+  listarTipoVehiculo(): Observable<any> {
+    return this.httpCliente.get(this.listaTV);
   }
 
-  
-  guardar(tipoVehiculo: TipoVehiculo): Observable<any> {
-    return this.http.post(`${this.apiGuardar}`, tipoVehiculo);
+  guardarTipoVehiculo(tipoVehiculo : TipoVehiculo): Observable<any>{
+    return this.httpCliente.post(`${this.guardarTV}`,tipoVehiculo);
   }
 
-  
-  modificar(tipoVehiculo: TipoVehiculo): Observable<any> {
-    return this.http.post(`${this.apiModificar}`, tipoVehiculo);
+  eliminarTipoVehiculo(id: number): Observable<any> {
+    return this.httpCliente.post(`${this.eliminarTV}`, id);
   }
 
-  
-  eliminar(id: number): Observable<any> {
-    return this.http.post(`${this.apiEliminar}`, id);
+  buscarTipoVehiculo(id: number): Observable<TipoVehiculo> {
+    return this.httpCliente.post<TipoVehiculo>(`${this.buscarId}?id=${id}`, null);
   }
 
-  buscarPorNombre(nombre: string): Observable<any> {
-    const parametros = new HttpParams().set('nombre', nombre);
-    return this.http.post(`${this.apiNombre}`, null, {params:parametros});
+  buscarNombre(nombre: string): Observable<TipoVehiculo[]> {
+    const params = new HttpParams().set('nombre', nombre);
+    return this.httpCliente.post<TipoVehiculo[]>(this.buscarN, null, { params });
   }
 }
