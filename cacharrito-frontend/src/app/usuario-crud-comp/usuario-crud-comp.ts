@@ -3,9 +3,10 @@ import { UsuarioServicio } from '../servicios/usuario-servicio';
 import { Usuario } from '../entidades/usuario';
 import { Navegacion } from '../navegacion/navegacion';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  imports: [Navegacion, FormsModule],
+  imports: [Navegacion, FormsModule, RouterModule],
   selector: 'app-usuario-crud-comp',
   styleUrl: './usuario-crud-comp.css',
   templateUrl: './usuario-crud-comp.html',
@@ -71,6 +72,23 @@ export class UsuarioCrudComp implements OnInit {
     });
     this.cerrarModal()
   }
+  buscarUsuario() {
+  if (this.busqueda.trim() === "") {
+    this.mostrarUsuarios();
+    return;
+  }
+
+  this.servicioUsuario.buscarNombreC(this.busqueda).subscribe({
+    next: (dato) => {
+      this.listaU.set(dato);
+      this.paginaActual.set(1);
+      this.cdr.markForCheck();
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
   
 
   paginaActual = signal(1);
