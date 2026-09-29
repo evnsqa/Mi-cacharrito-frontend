@@ -93,7 +93,7 @@ export class UsuarioCrudComp implements OnInit {
   
 
   paginaActual = signal(1);
-  itemsPorPagina = 1;
+  itemsPorPagina = 10;
 
   datosPaginados = computed(() => {
     const inicio = (this.paginaActual() - 1) * this.itemsPorPagina;

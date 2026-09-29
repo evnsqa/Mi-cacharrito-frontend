@@ -4,10 +4,11 @@ import { Vehiculo } from '../entidades/vehiculo';
 import { VehiculoServicio } from '../servicios/vehiculo-servicio';
 import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Navegacion } from '../navegacion/navegacion';
 
 
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, Navegacion],
   selector: 'app-vehiculo-componente',
   styleUrl: './vehiculo-componente.css',
   templateUrl: './vehiculo-componente.html',
