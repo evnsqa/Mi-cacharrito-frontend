@@ -1,26 +1,26 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
+import { FormsModule } from '@angular/forms';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
+import { Alquileres } from '../entidades/alquileres';
 
 @Component({
-  imports: [CommonModule, NavAdminComponente],
+  imports: [CommonModule, NavAdminComponente, FormsModule],
   selector: 'app-entregar-vehiculo-componente',
   styleUrl: './entrega-vehiculo-componente.css',
   templateUrl: './entrega-vehiculo-componente.html',
 })
 export class EntregarVehiculoComponente implements OnInit {
-
-  alquileresPendientes = signal<any[]>([]);
-
+  
+  alquileresPendientes = signal<Alquileres[]>([]);
   paginaActual = signal(1);
-
   itemsPorPagina = 10;
 
+  placaBuscada = '';
+
   datosPaginados = computed(() => {
-
     const inicio = (this.paginaActual() - 1) * this.itemsPorPagina;
-
     const fin = inicio + this.itemsPorPagina;
 
     return this.alquileresPendientes().slice(inicio, fin);
@@ -36,15 +36,11 @@ export class EntregarVehiculoComponente implements OnInit {
   constructor(private alquilerServicio: AlquilerServicio) {}
 
   ngOnInit(): void {
-
     this.cargarAlquileres();
-
   }
 
   cargarAlquileres(): void {
-
     this.alquilerServicio.listarAlquileresPendientes().subscribe({
-
       next: (datos) => {
 
         this.alquileresPendientes.set(datos);
@@ -52,7 +48,6 @@ export class EntregarVehiculoComponente implements OnInit {
       },
 
       error: (err) => {
-
         console.error(
           'Error al cargar los alquileres pendientes:',
           err
@@ -64,6 +59,24 @@ export class EntregarVehiculoComponente implements OnInit {
 
   }
 
+  buscarPorPlaca():void {
+    const placa = this.placaBuscada.trim().toLowerCase();
+
+    if (placa === '') {
+      this.cargarAlquileres();
+      return;
+
+  }
+
+  const resultados = this.alquileresPendientes().filter(
+    alquiler => alquiler.vehiculos?.placa?.toLowerCase() === placa
+    );
+
+    this.alquileresPendientes.set(resultados);
+    this.paginaActual.set(1);
+  }
+
+
   entregarVehiculo(placa: string): void {
 
     const confirmar = confirm(
@@ -71,21 +84,15 @@ export class EntregarVehiculoComponente implements OnInit {
     );
 
     if (confirmar) {
-
       this.alquilerServicio.entregarVehiculo(placa).subscribe({
-
         next: () => {
-
           alert('Vehículo entregado correctamente');
-
           this.cargarAlquileres();
 
         },
 
         error: (err) => {
-
           alert('Error al entregar el vehículo');
-
           console.error(err);
 
         }

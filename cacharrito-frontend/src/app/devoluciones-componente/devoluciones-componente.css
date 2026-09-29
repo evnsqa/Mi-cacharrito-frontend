@@ -46,35 +46,15 @@
     color: black;
 }
 
-.buscador {
-    width: 70%;
-    margin: auto;
-}
-
-.buscador .form-control {
-    font-family: 'SairaSemiCondensed-Light';
-    border-color: #000000;
-}
-
-.buscador .btn {
-    background-color: #255C7E;
-    border-color: #255C7E;
-}
-
-.buscador .btn:hover {
-    background-color: #1d4b68;
-    border-color: #1d4b68;
-}
-
-.tableEntregarV {
+.tableDevolverV {
     width: 100%;
 }
 
-.tableEntregarV table {
+.tableDevolverV table {
     width: 100%;
 }
 
-.tableEntregarV th {
+.tableDevolverV th {
     font-family: 'SairaSemiCondensed-Medium';
     color: white;
     background-color: #255C7E;
@@ -82,7 +62,7 @@
     vertical-align: middle;
 }
 
-.tableEntregarV td {
+.tableDevolverV td {
     font-family: 'SairaSemiCondensed-Light';
     color: black;
     background-color: rgba(171, 170, 170, 0.673);
@@ -90,13 +70,13 @@
     vertical-align: middle;
 }
 
-.tableEntregarV .btn-primary {
+.tableDevolverV .btn-primary {
     font-family: 'SairaSemiCondensed-Medium';
     background-color: #255C7E;
     border-color: #255C7E;
 }
 
-.tableEntregarV .btn-primary:hover {
+.tableDevolverV .btn-primary:hover {
     background-color: #1d4b68;
     border-color: #1d4b68;
 }

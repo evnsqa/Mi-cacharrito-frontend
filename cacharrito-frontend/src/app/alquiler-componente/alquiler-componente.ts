@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Alquileres } from '../entidades/alquileres';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
+import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
 import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
@@ -19,7 +20,8 @@ export class AlquilerComponente implements OnInit {
   
   constructor(
     private alquilerServicio: AlquilerServicio,
-    private router: Router
+    private router: Router,
+    private dataService: EnviarDatoServicio
   ){}
 
   ngOnInit(): void {
@@ -31,8 +33,19 @@ export class AlquilerComponente implements OnInit {
     } else {
       alert("Debes iniciar sesión para alquilar un vehículo");
       this.router.navigate(['/']); 
+      return;
     }
-  }
+
+    const vehiculo = this.dataService.vehiculoSignal();
+
+    if(vehiculo) {
+      this.nuevoAlquiler.vehiculos = vehiculo;
+      console.log("Vehículo recibido:", vehiculo);
+      } else {
+      alert("No se ha seleccionado ningún vehículo.");
+      this.router.navigate(['/']);
+    }
+    }
 
 
   aceptarAlquiler() {
