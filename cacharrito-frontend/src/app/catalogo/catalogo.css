@@ -1,21 +1,31 @@
+/* Contenedor principal de la página */
+.wrapper-catalogo {
+  background-color: #f4f7fc;
+  min-height: 100vh;
+}
+
+.icono-grande {
+  font-size: 2rem;
+}
+
+.contenedor-icono {
+  width: 80px;
+  height: 80px;
+  font-size: 2.5rem;
+}
+
+.contenedor-flecha {
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+}
+
 .tarjeta-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .tarjeta-hover:hover {
-  background-color: #0d6efd !important;
-  border-color: #0d6efd !important;
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(13, 110, 253, 0.3) !important;
-}
-
-.tarjeta-hover:hover .texto-vehiculo {
-  color: white !important;
-}
-
-.tarjeta-hover:hover .icono-vehiculo,
-.tarjeta-hover:hover .flecha-vehiculo {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  color: white !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
 }

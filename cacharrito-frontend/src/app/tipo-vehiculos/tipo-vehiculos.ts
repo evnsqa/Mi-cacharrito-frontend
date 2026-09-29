@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; // <-- 1. Importamos el detector de cambios
+import { Component, OnInit, ChangeDetectorRef, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ServiciosTipoVehiculo } from '../servicios/servicios-tipo-vehiculo';
 import { TipoVehiculo } from '../entidades/tipo-vehiculo';
+import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
 
 @Component({
   selector: 'app-tipo-vehiculos',
@@ -12,28 +13,26 @@ import { TipoVehiculo } from '../entidades/tipo-vehiculo';
 })
 export class TipoVehiculosComponent implements OnInit {
 
-  listaTipos: any[] = [];
-  listaTiposOriginal: any[] = [];
-  tipoActual: any = { idTipo: null, nombre: '' };
-  
+  listaTV = signal<TipoVehiculo[]>([]);
   bandera: boolean = false; 
-  busqueda: string = ''; 
-  textoBusqueda: string = '';
+  busqueda: string = ""; 
+  idTV: number | null = null;
+  nombreTV: string = "";
 
-  // 2. Lo inyectamos en el constructor (cdr)
-  constructor(private servicio: ServiciosTipoVehiculo, private cdr: ChangeDetectorRef) {}
+  private dataService = inject(EnviarDatoServicio);
 
   ngOnInit(): void {
     this.listar();
   }
 
+  tipoVehiculo: TipoVehiculo = new TipoVehiculo;
+  constructor(private servicio: ServiciosTipoVehiculo, private cdr: ChangeDetectorRef) { }
+
   listar() {
-    this.servicio.listarTodos().subscribe(datos => {
-      this.listaTipos = datos;
-      this.listaTiposOriginal = datos;
-      
-      // 3. ¡EL TRUCO MÁGICO! Le damos la orden directa a Angular de repintar la tabla YA MISMO
-     this.cdr.markForCheck();
+    this.servicio.listarTipoVehiculo().subscribe(dato => {
+      this.listaTV.set(dato);
+      console.log(dato);
+      this.cdr.markForCheck();
     });
   }
 
@@ -45,7 +44,7 @@ export class TipoVehiculosComponent implements OnInit {
   }
 
   cerrarModal() {
-    this.tipoActual = { idTipo: null, nombre: '' };
+    this.tipoVehiculo = new TipoVehiculo;
     this.bandera = false;
     const modal = document.getElementById("registro");
     if (modal != null) {
@@ -54,51 +53,98 @@ export class TipoVehiculosComponent implements OnInit {
   }
 
   guardar() {
-    if (this.tipoActual.idTipo || this.tipoActual.idTipoVehiculo) {
-      this.servicio.modificar(this.tipoActual).subscribe(() => {
-        alert("Modificado con éxito");
-        this.cerrarModal();
-        this.listar(); // Como listar() ahora tiene el detector de cambios, se actualiza sola
-      });
-    } else {
-      this.servicio.guardar(this.tipoActual).subscribe(() => {
-        alert("Guardado con éxito");
-        this.cerrarModal();
-        this.listar();
-      });
-    }
+    this.servicio.guardarTipoVehiculo(this.tipoVehiculo).subscribe(dato => {
+      console.log(dato)
+      this.cerrarModal()
+      this.listar();
+      this.enviarTipoVehiculo(dato);
+    })
   }
 
-  actualizar(tipo: any) {
+  actualizar(t: TipoVehiculo) {
     this.bandera = true; 
-    this.tipoActual = { ...tipo }; 
+    this.nombreTV = t.nombre;
+    this.tipoVehiculo = { ...t };
     this.abrirModal();
   }
 
-  eliminar(id: any) {
-    if (confirm('¿Estás seguro de eliminar este tipo de vehículo?')) {
-      this.servicio.eliminar(id).subscribe(() => {
+
+  eliminar(id_tipo_vehiculo: number) {
+    const confirmar = confirm(`Estas seguro de eliminar el tipo de vehiculo # ${id_tipo_vehiculo}?`)
+    if (confirmar) {
+      this.servicio.eliminarTipoVehiculo(id_tipo_vehiculo).subscribe(dato => {
+        console.log(dato)
+        this.listar();
         alert("Eliminado con éxito");
-        this.listar(); // ¡Se actualiza sola!
       });
     }
   }
 
-  buscar() {
-    if (!this.textoBusqueda.trim()) {
-      this.listaTipos = this.listaTiposOriginal;
-      this.cdr.detectChanges();
+  verId() {
+    if (this.idTV === null || this.idTV === undefined || this.idTV <= 0) {
+      console.warn('Por favor ingrese un id.');
+      alert('Por favor ingrese un id valido.')
       return;
     }
-    this.listaTipos = this.listaTiposOriginal.filter((t: any) => 
-      t.nombre.toLowerCase().includes(this.textoBusqueda.toLowerCase())
-    );
-    this.cdr.detectChanges();
+
+    this.servicio.buscarTipoVehiculo(this.idTV).subscribe({
+      next: (dato) => {
+        console.log('Vehiculos encontrados:', dato);
+        this.listaTV.set([dato]);
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error al consultar vehiculos:', err);
+        alert('No se encontro ningun vehiculo.');
+      }
+    });
+    this.cdr.markForCheck();
   }
 
-  limpiarBusqueda() {
-    this.textoBusqueda = '';
-    this.listaTipos = this.listaTiposOriginal;
-    this.cdr.detectChanges();
+  verNombre() {
+    if (!this.nombreTV.trim()) {
+      console.warn('Por favor ingrese un nombre.');
+      return;
+    }
+
+    this.servicio.buscarNombre(this.nombreTV).subscribe({
+      next: (dato) => {
+        console.log('Vehiculos encontrados:', dato);
+        this.listaTV.set(dato); 
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error al consultar vehiculos:', err);
+        alert('No se encontro ningun vehiculo.');
+      }
+    });
+    this.cdr.markForCheck();
   }
+
+  enviarTipoVehiculo(t: TipoVehiculo) {
+    console.log(t);
+    this.dataService.enviar(t);
+    alert(`Tipo de Vehiculo "${t.nombre}" enviado correctamente.`);
+    this.cerrarModal();
+  }
+
+  paginaActual = signal(1);
+  itemsPorPagina = 2;
+
+
+  datosPaginados = computed(() => {
+    const inicio = (this.paginaActual() - 1) * this.itemsPorPagina;
+    const fin = inicio + this.itemsPorPagina;
+    return this.listaTV().slice(inicio, fin);
+  });
+
+  totalPaginas = computed(() =>
+    Math.ceil(this.listaTV().length / this.itemsPorPagina));
+
+  cambiarPagina(nuevaPagina: number) {
+    if (nuevaPagina >= 1 && nuevaPagina <= this.totalPaginas()) {
+      this.paginaActual.set(nuevaPagina);
+    }
+  }
+
 }
