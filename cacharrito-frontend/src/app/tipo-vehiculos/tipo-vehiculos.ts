@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ServiciosTipoVehiculo } from '../servicios/servicios-tipo-vehiculo';
 import { TipoVehiculo } from '../entidades/tipo-vehiculo';
+import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
   selector: 'app-tipo-vehiculos',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,Navegacion],
   templateUrl: './tipo-vehiculos.html',
   styleUrls: ['./tipo-vehiculos.css']
 })

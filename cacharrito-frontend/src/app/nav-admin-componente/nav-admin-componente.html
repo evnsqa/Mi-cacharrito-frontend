@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="/inicioAdmin">
+        <a class="navbar-brand" routerLink="/inicioAdmin">
             <img src="/recursos/logo.png" alt="Mi Cacharrito" width="120" height="50">
         </a>
 
@@ -24,7 +24,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"href="#"role="button"data-bs-toggle="dropdown"aria-expanded="false">
+                    <a class="nav-link dropdown-toggle"routerLink="#"role="button"data-bs-toggle="dropdown"aria-expanded="false">
                         Alquileres
                     </a>
                     <ul class="dropdown-menu">
@@ -52,7 +52,7 @@
     
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="#" (click)="cerrarSesion()">Cerrar sesión</a>
+                        <a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a>
                     </li>
                 </ul>
             </div>

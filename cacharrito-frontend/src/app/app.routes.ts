@@ -29,12 +29,7 @@ export const routes: Routes = [
     { path: "noticias", component: NoticiasComponent},
     { path: 'crud', component: UsuarioCrudComp},
     { path: "tipos", component: TipoVehiculosComponent},
-    { path: 'dashboardAdmin', component: DashboardAdminComponente},
-    { path: "inicio", component: InicioComponente },
-    { path: "login", component: InicioSesion },
-    { path: "contacto", component: ContactoComponente },
     { path: 'vehiculos-por/:tipo', component: VehiculoComponente },
-    { path: 'dashboardAdmin', component: DashboardAdminComponente },
     { path: "crudUsuario", component: UsuarioCrudComp },
     { path: "devoluciones", component: DevolucionesComponente},
     { path: "misAlquileres", component: CancelarAlquilerComponente}

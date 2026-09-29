@@ -47,14 +47,6 @@
             </thead>
             
             <tbody>
-            <tr *ngFor="let alquiler of datosPaginados()">
-                <td class="text-center">{{ alquiler.vehiculos?.placa }}</td>
-                <td class="text-center">{{ alquiler.usuario?.nombreCompleto }}</td>
-                <td class="text-center">{{ alquiler.vehiculos?.tipo }}</td>
-                <td class="text-center">{{ alquiler.fechaInicio }}</td>
-                <td class="text-center">{{ alquiler.estado }}</td>
-            </tr>
-            <tbody>
                         @for(alquiler of datosPaginados(); track alquiler.numeroAlquiler){
                             <tr>
                                 <td class="text-center">{{ alquiler.vehiculos?.placa }}</td>

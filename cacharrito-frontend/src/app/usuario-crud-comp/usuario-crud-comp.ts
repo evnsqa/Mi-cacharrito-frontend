@@ -73,6 +73,23 @@ export class UsuarioCrudComp implements OnInit {
     });
     this.cerrarModal()
   }
+  buscarUsuario() {
+  if (this.busqueda.trim() === "") {
+    this.mostrarUsuarios();
+    return;
+  }
+
+  this.servicioUsuario.buscarNombreC(this.busqueda).subscribe({
+    next: (dato) => {
+      this.listaU.set(dato);
+      this.paginaActual.set(1);
+      this.cdr.markForCheck();
+    },
+    error: (err) => {
+      console.error(err);
+    }
+  });
+}
   
 
   paginaActual = signal(1);

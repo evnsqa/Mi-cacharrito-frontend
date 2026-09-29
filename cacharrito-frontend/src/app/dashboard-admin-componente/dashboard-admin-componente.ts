@@ -1,9 +1,10 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
 import { Alquileres } from '../entidades/alquileres';
 @Component({
-  imports: [NavAdminComponente],
+  imports: [NavAdminComponente, CommonModule],
   selector: 'app-dashboard-admin-componente',
   styleUrl: './dashboard-admin-componente.css',
   templateUrl: './dashboard-admin-componente.html',
