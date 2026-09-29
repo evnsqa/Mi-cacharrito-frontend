@@ -85,7 +85,7 @@ export class VehiculoComponenteAdmi implements OnInit {
         console.log('Vehículo guardado con éxito:', dato);
         this.cerrarModal();
         this.listarVehiculos();
-        alert('Vehículo guardado correctamente.'); // Alerta opcional de éxito
+        alert('Vehículo guardado correctamente.');
       },
 
       error: (err) => {
