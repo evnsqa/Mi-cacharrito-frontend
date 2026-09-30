@@ -1,4 +1,7 @@
 <app-navegacion></app-navegacion>
+
+<div class="container">
+  <h1>ESTA ES LA PAGINA DE TIPO DE VEHÍCULOS</h1><br>
 <div class="container">
   <h1>ESTA ES LA PAGINA DE TIPO DE VEHÍCULOS</h1><br>
 
@@ -117,14 +120,15 @@
 
             <div class="mb-3">
               <label class="form-label">Nombre</label>
-              <input for="inputNombre" type="text" class="form-control" [(ngModel)]="tipoVehiculo.nombre" name="nombre" required>
+              <input for="inputNombre" type="text" class="form-control" [(ngModel)]="tipoVehiculo.nombre" name="nombre"
+                required>
             </div>
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                 (click)="cerrarModal()">Cerrar</button>
+              <button type="submit" class="btn btn-primary" [disabled]="formTipoVehiculo.invalid">Guardar</button>
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="formTipoVehiculo.invalid">Guardar</button>
 
           </form>
         </div>
