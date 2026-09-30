@@ -78,8 +78,8 @@ export class DevolucionesComponente implements OnInit {
     }
 
     this.alquilerServicio.devolverVehiculo(id).subscribe({
-      next: () => {
-        alert('Vehículo devuelto correctamente');
+      next: (mensaje) => {
+        alert(mensaje);
         this.cargarAlquileres();
       },
       error: (err) => {
