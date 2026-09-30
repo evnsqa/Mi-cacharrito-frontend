@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { Vehiculo } from '../entidades/vehiculo';
 import { TipoVehiculo } from '../entidades/tipo-vehiculo';
 import { VehiculoServicio } from '../servicios/vehiculo-servicio';
+import { Navegacion } from '../navegacion/navegacion';
 
 @Component({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Navegacion],
   selector: 'app-vehiculo-componente-admi',
   styleUrl: './vehiculo-componente-admi.css',
   templateUrl: './vehiculo-componente-admi.html',
