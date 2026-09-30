@@ -10,11 +10,11 @@ import { Usuario } from '../entidades/usuario';
 
 export class UsuarioServicio {
     constructor(private httpCliente: HttpClient) {}
-    private listaUsuarios = "http://localhost:8080/api/usuarios/listarTodo"
-    private loginU = "http://localhost:8080/api/usuarios/login"
-    private registroU = "http://localhost:8080/api/usuarios/registro"
-    private buscarNombre = "http://localhost:8080/api/usuarios/nombreCompleto"
-    private eliminarU = "http://localhost:8080/api/usuarios/eliminarUsuario/"
+    private listaUsuarios = "https://mi-cacharrito-backend-production.up.railway.app/api/usuarios/listarTodo"
+    private loginU = "https://mi-cacharrito-backend-production.up.railway.app/api/usuarios/login"
+    private registroU = "https://mi-cacharrito-backend-production.up.railway.app/api/usuarios/registro"
+    private buscarNombre = "https://mi-cacharrito-backend-production.up.railway.app/api/usuarios/nombreCompleto"
+    private eliminarU = "https://mi-cacharrito-backend-production.up.railway.app/api/usuarios/eliminarUsuario/"
 
 
     listarUsusarios(): Observable<any>{
