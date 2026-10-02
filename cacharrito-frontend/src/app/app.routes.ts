@@ -32,6 +32,7 @@ export const routes: Routes = [
     { path: 'vehiculos-por/:tipo', component: VehiculoComponente },
     { path: "crudUsuario", component: UsuarioCrudComp },
     { path: "devoluciones", component: DevolucionesComponente},
-    { path: "misAlquileres", component: CancelarAlquilerComponente}
+    { path: "misAlquileres", component: CancelarAlquilerComponente},
+    { path: 'alquiler', component: AlquilerComponente },
 
 ];

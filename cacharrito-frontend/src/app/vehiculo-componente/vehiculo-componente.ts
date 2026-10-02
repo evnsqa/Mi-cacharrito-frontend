@@ -72,6 +72,6 @@ export class VehiculoComponente implements OnInit {
     this.dataService.enviar(v);
     alert(`Vehiculo "${v.nombre}" seleccionado correctamente.`);
     this.cerrarModal();
-    this.router.navigate(['/AlquilerComponente']);
+    this.router.navigate(['/alquiler']);
   }
 }

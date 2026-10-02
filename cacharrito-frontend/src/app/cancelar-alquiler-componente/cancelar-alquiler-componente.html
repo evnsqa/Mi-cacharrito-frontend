@@ -29,7 +29,7 @@
     @for(alquiler of datosPaginados(); track alquiler.numeroAlquiler){
         <tr>
             <td class="text-center">{{ alquiler.numeroAlquiler }}</td>
-            <td class="text-center">{{ alquiler.vehiculos?.tipoVehiculo }}</td>
+            <td class="text-center">{{ alquiler.vehiculos?.tipoVehiculo.nombre }}</td>
             <td class="text-center">{{ alquiler.vehiculos?.placa }}</td>
             <td class="text-center">{{ alquiler.fechaInicio }} <br>hasta <br>{{ alquiler.fechaEntrega }}</td>
             <td class="text-center">{{ alquiler.estado }}</td>
