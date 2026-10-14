@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Usuario } from '../entidades/usuario';
 import { UsuarioServicio } from '../servicios/usuario-servicio';
 import { Navegacion } from '../navegacion/navegacion';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   imports: [FormsModule, Navegacion, RouterLink],
@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class RegistroUsuario {
 
-  constructor(private servicioUsuario: UsuarioServicio){}
+  constructor(private servicioUsuario: UsuarioServicio, private router: Router){}
   usuarioNuevo: Usuario = new Usuario;
 
   registrar() {
@@ -21,10 +21,10 @@ export class RegistroUsuario {
       next: (dato) => {
         console.log(dato);
         alert("Registro exitoso");
-        
+        this.router.navigate(['/login']);
       },
       error: (err) => {
-        alert("Error al registrar: " + err.error);
+        alert("Error al registrar, llene todos los campos correctamente.");
         console.error(err);
       }
     });
