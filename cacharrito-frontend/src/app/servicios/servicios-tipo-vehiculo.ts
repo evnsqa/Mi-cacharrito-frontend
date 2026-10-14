@@ -23,12 +23,12 @@ export class ServiciosTipoVehiculo {
     return this.httpCliente.post(`${this.guardarTV}`,tipoVehiculo);
   }
 
-  eliminarTipoVehiculo(id: number): Observable<any> {
-    return this.httpCliente.post(`${this.eliminarTV}`, id);
+  eliminarTipoVehiculo(idTipoVehiculo: number): Observable<any> {
+    return this.httpCliente.post(`${this.eliminarTV}`, idTipoVehiculo);
   }
 
-  buscarTipoVehiculo(id: number): Observable<TipoVehiculo> {
-    return this.httpCliente.post<TipoVehiculo>(`${this.buscarId}?id=${id}`, null);
+  buscarTipoVehiculo(idTipoVehiculo: number): Observable<TipoVehiculo> {
+    return this.httpCliente.post<TipoVehiculo>(`${this.buscarId}?id=${idTipoVehiculo}`, null);
   }
 
   buscarNombre(nombre: string): Observable<TipoVehiculo[]> {

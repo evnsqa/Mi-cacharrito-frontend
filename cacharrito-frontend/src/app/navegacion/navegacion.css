@@ -1,33 +1,33 @@
 .navbar {
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.9),
-        rgba(0, 0, 0, 0.792),
-        rgba(0, 0, 0, 0.626)
-    );
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.792),
+      rgba(0, 0, 0, 0.626));
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .botonRegistro {
-    background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
 
 .botonRegistro:hover {
-    background-color: rgba(165, 42, 42, 0);
-    color: rgb(255, 255, 255);
-    border: hsl(0, 0%, 100%) solid 1px;
+  background-color: rgba(165, 42, 42, 0);
+  color: rgb(255, 255, 255);
+  border: hsl(0, 0%, 100%) solid 1px;
 }
-.botonRegistro{
-    background-color: #255C7E;
-    color: black;
+
+.botonRegistro {
+  background-color: #255C7E;
+  color: black;
 }
-.botonRegistro:hover{
-        background-color: rgba(165, 42, 42, 0);
-        color: rgb(255, 255, 255);
-        border: #255C7E solid 1px;
+
+.botonRegistro:hover {
+  background-color: rgba(165, 42, 42, 0);
+  color: rgb(255, 255, 255);
+  border: #255C7E solid 1px;
 }
 
 .btn-salir {
@@ -36,24 +36,25 @@
   border: none;
   font-weight: 600;
   padding: 6px 18px;
-  border-radius: 50px; 
-  box-shadow: 0 4px 6px rgba(220, 38, 38, 0.25); 
-  transition: all 0.3s ease; 
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(220, 38, 38, 0.25);
+  transition: all 0.3s ease;
 }
 
 
 .btn-salir:hover {
   background: linear-gradient(135deg, #ef4444, #b91c1c);
-  transform: translateY(-2px); 
-  box-shadow: 0 6px 12px rgba(220, 38, 38, 0.4); 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(220, 38, 38, 0.4);
   color: #ffffff;
 }
 
 
 .btn-salir:active {
-  transform: translateY(0); 
+  transform: translateY(0);
   box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
 }
+
 .btn-carrito {
   background-color: rgba(255, 255, 255, 0.1);
   color: #ffffff;
@@ -80,5 +81,5 @@
 }
 
 .offcanvas-body {
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
 }

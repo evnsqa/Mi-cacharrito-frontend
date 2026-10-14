@@ -187,7 +187,6 @@ h1 {
     object-fit: contain;
     display: block;
     margin: 0 auto 15px auto;
-    cursor: pointer;
     
 }
 
@@ -215,9 +214,5 @@ h1 {
 
 .imgFlotas {
     transition: transform 0.3s ease;
-}
-
-.imgFlotas:hover {
-    transform: scale(1.08) translateY(-8px);
 }
 

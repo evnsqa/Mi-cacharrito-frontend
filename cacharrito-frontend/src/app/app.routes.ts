@@ -11,6 +11,7 @@ import { CatalogoComponent } from './catalogo/catalogo';
 import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
 import { NoticiasComponent } from './noticias/noticias';
 import { VehiculoComponente } from './vehiculo-componente/vehiculo-componente';
+import { VehiculoComponenteAdmi } from './vehiculo-componente-admi/vehiculo-componente-admi';
 import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
 import { DevolucionesComponente} from './devoluciones-componente/devoluciones-componente';
 import { CancelarAlquilerComponente } from './cancelar-alquiler-componente/cancelar-alquiler-componente';
@@ -30,6 +31,7 @@ export const routes: Routes = [
     { path: 'crud', component: UsuarioCrudComp},
     { path: "tipos", component: TipoVehiculosComponent},
     { path: 'vehiculos-por/:tipo', component: VehiculoComponente },
+    { path: 'vehiculosAdmin', component: VehiculoComponenteAdmi },
     { path: "crudUsuario", component: UsuarioCrudComp },
     { path: "devoluciones", component: DevolucionesComponente},
     { path: "misAlquileres", component: CancelarAlquilerComponente},
