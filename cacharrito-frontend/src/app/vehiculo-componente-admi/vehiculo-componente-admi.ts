@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { Vehiculo } from '../entidades/vehiculo';
 import { TipoVehiculo } from '../entidades/tipo-vehiculo';
 import { VehiculoServicio } from '../servicios/vehiculo-servicio';
-import { Navegacion } from '../navegacion/navegacion';
 import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
 
 @Component({
-  imports: [CommonModule, FormsModule,  NavAdminComponente],
+  imports: [CommonModule, FormsModule, NavAdminComponente],
   selector: 'app-vehiculo-componente-admi',
   styleUrl: './vehiculo-componente-admi.css',
   templateUrl: './vehiculo-componente-admi.html',
@@ -60,16 +59,33 @@ export class VehiculoComponenteAdmi implements OnInit {
   }
 
   eliminar(placa: string) {
-    const confirmar = confirm(`Estas seguro de eliminar el vehiculo: ${placa}?`)
-
+    const confirmar = confirm(`¿Estás seguro de eliminar el vehículo con placa ${placa}?`);
+    
     if (confirmar) {
-      this.servicioVehiculo.eliminarVehiculo(placa).subscribe(dato => {
-        console.log(dato)
-        this.listarVehiculos()
-        alert('Vehiculo eliminado correctamente.')
-      })
+      this.servicioVehiculo.eliminarVehiculo(placa).subscribe({
+        next: (dato) => {
+          console.log('Borrado exitoso (JSON):', dato);
+          this.listarVehiculos();
+          alert("Vehículo eliminado con éxito.");
+        },
+        error: (err) => {
+          console.error('Error capturado al borrar vehículo:', err);
+
+          if (err.status === 200) {
+            this.listarVehiculos();
+            alert("Vehículo eliminado de forma exitosa.");
+          } 
+          else if (err.status === 400) {
+            alert(err.error); 
+          } 
+          else {
+            alert("Ocurrió un error inesperado al conectar con el servidor.");
+          }
+        }
+      });
     }
   }
+
 
 
   actualizar(v: Vehiculo) {

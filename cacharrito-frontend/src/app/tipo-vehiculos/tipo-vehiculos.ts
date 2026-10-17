@@ -4,12 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { EnviarDatoServicio } from '../servicios/enviar-dato-servicio';
 import { ServiciosTipoVehiculo } from '../servicios/servicios-tipo-vehiculo';
 import { TipoVehiculo } from '../entidades/tipo-vehiculo';
-import { Navegacion } from '../navegacion/navegacion';
-import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente'; 
+import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
 
 @Component({
   selector: 'app-tipo-vehiculos',
-  imports: [CommonModule, FormsModule, NavAdminComponente], 
+  imports: [CommonModule, FormsModule, NavAdminComponente],
   templateUrl: './tipo-vehiculos.html',
   styleUrls: ['./tipo-vehiculos.css']
 })
@@ -71,16 +70,34 @@ export class TipoVehiculosComponent implements OnInit {
   }
 
 
-  eliminar(id_tipo_vehiculo: number) {
-    const confirmar = confirm(`Estas seguro de eliminar el tipo de vehiculo # ${id_tipo_vehiculo}?`)
+  eliminar(idTipoVehiculo: number) {
+    const confirmar = confirm(`¿Estás seguro de eliminar el tipo de vehículo # ${idTipoVehiculo}?`);
+    
     if (confirmar) {
-      this.servicio.eliminarTipoVehiculo(id_tipo_vehiculo).subscribe(dato => {
-        console.log(dato)
-        this.listar();
-        alert("Eliminado con éxito");
+      this.servicio.eliminarTipoVehiculo(idTipoVehiculo).subscribe({
+        next: (dato) => {
+          console.log('Borrado exitoso (JSON):', dato);
+          this.listar();
+          alert("Tipo de Vehículo eliminado con éxito.");
+        },
+        error: (err) => {
+          console.error('Error capturado al borrar:', err);
+
+          if (err.status === 200) {
+            this.listar(); 
+            alert("Tipo de Vehículo y sus automóviles asociados eliminados con éxito.");
+          } 
+          else if (err.status === 400) {
+            alert(err.error); 
+          } 
+          else {
+            alert("Ocurrió un error inesperado al conectar con el servidor.");
+          }
+        }
       });
     }
   }
+
 
   verId() {
     if (this.idTV === null || this.idTV === undefined || this.idTV <= 0) {
@@ -126,7 +143,7 @@ export class TipoVehiculosComponent implements OnInit {
   enviarTipoVehiculo(t: TipoVehiculo) {
     console.log(t);
     this.dataService.enviar(t);
-    alert(`Tipo de Vehiculo "${t.nombre}" enviado correctamente.`);
+    alert(`Tipo de Vehiculo "${t.nombre}" guardado correctamente.`);
     this.cerrarModal();
   }
 

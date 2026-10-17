@@ -65,7 +65,10 @@ export class AlquilerComponente implements OnInit {
     });
   }
 
-    
+  volver() {
+    window.history.back(); 
+  }
+  
 
   generarPDF(alquilerGuardado: any) {
   
