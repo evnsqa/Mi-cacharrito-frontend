@@ -35,6 +35,7 @@ export const routes: Routes = [
     { path: "devoluciones", component: DevolucionesComponente},
     { path: "misAlquileres", component: CancelarAlquilerComponente},
     { path: "vehiculoAdmin", component: VehiculoComponenteAdmi},
-    { path: "tipoVehiculo", component: TipoVehiculosComponent}
+    { path: "tipoVehiculo", component: TipoVehiculosComponent},
+    { path: 'alquiler', component: AlquilerComponente }
 
 ];

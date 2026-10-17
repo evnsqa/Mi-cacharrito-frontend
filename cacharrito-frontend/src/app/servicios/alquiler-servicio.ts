@@ -48,7 +48,10 @@ export class AlquilerServicio {
 
     devolverVehiculo(id: number): Observable<any> {
     const params = new HttpParams().set("id", id);
-    return this.httpCliente.post(this.devolver, null, { params: params });
+    return this.httpCliente.post(this.devolver, null, {
+        params: params,
+        responseType: 'text'
+    });
 }
 }
 

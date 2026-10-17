@@ -5,9 +5,10 @@ import { Vehiculo } from '../entidades/vehiculo';
 import { TipoVehiculo } from '../entidades/tipo-vehiculo';
 import { VehiculoServicio } from '../servicios/vehiculo-servicio';
 import { Navegacion } from '../navegacion/navegacion';
+import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
 
 @Component({
-  imports: [CommonModule, FormsModule, Navegacion],
+  imports: [CommonModule, FormsModule,  NavAdminComponente],
   selector: 'app-vehiculo-componente-admi',
   styleUrl: './vehiculo-componente-admi.css',
   templateUrl: './vehiculo-componente-admi.html',
