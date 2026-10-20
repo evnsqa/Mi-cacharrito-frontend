@@ -1,84 +1,40 @@
 <app-navegacion></app-navegacion>
-<br><br><br><br>
-<div class="container py-5" style="min-height: 80vh;">
-  
- 
-  <div class="text-center mb-5">
-    <h1 class="fw-bold text-dark display-6">Contáctanos</h1>
-    <p class="text-muted fs-6 mb-0">¿Tienes sugerencias o quieres hacer un pedido especial?</p>
-    <p class="text-muted fs-6">¡Te responderemos lo antes posible!</p>
-  </div>
 
-  <div class="row g-4 align-items-stretch justify-content-center">
-    
-    
-    <div class="col-lg-5">
-      <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
-        <h4 class="fw-bold mb-4 border-bottom pb-3" style="color: #0f172a;">Información de contacto</h4>
-        
-        <ul class="list-unstyled mb-0 mt-3">
-        
-          <li class="d-flex mb-4 align-items-center">
-            <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 50px; height: 50px; font-size: 1.5rem;">
-              <i class="bi bi-geo-alt-fill"></i>
-            </div>
-            <div>
-              <h6 class="fw-bold mb-1">Dirección</h6>
-              <p class="text-muted mb-0 small">Calle 12 #34 - 56, La Dorada, Caldas</p>
-            </div>
-          </li>
-          
-        
-          <li class="d-flex mb-4 align-items-center">
-            <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 50px; height: 50px; font-size: 1.5rem;">
-              <i class="bi bi-telephone-fill"></i>
-            </div>
-            <div>
-              <h6 class="fw-bold mb-1">Teléfono</h6>
-              <p class="text-muted mb-0 small">+57 300 123 4567</p>
-            </div>
-          </li>
+<main class="contacto-page">
+  <header class="contacto-heading">
+    <p class="contacto-eyebrow">Estamos para ayudarte</p>
+    <h1>Contáctanos</h1>
+    <p>¿Tienes sugerencias o quieres hacer un pedido especial? ¡Te responderemos lo antes posible!</p>
+  </header>
 
-         
-          <li class="d-flex mb-4 align-items-center">
-            <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 50px; height: 50px; font-size: 1.5rem;">
-              <i class="bi bi-envelope-fill"></i>
-            </div>
-            <div>
-              <h6 class="fw-bold mb-1">Correo</h6>
-              <p class="text-muted mb-0 small">contacto&#64;micacharrito.com</p>
-            </div>
-          </li>
-
-          
-          <li class="d-flex align-items-center">
-            <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 50px; height: 50px; font-size: 1.5rem;">
-              <i class="bi bi-clock-fill"></i>
-            </div>
-            <div>
-              <h6 class="fw-bold mb-1">Horario</h6>
-              <p class="text-muted mb-0 small">Lunes a Sábado, 8:00 a.m - 7:00 p.m</p>
-            </div>
-          </li>
-        </ul>
+  <section class="contacto-grid container" aria-label="Información de contacto y ubicación">
+    <article class="contacto-card contacto-info">
+      <div>
+        <span class="contacto-icono"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></span>
+        <div><h2>Dirección</h2><p>Calle 12 #34 - 56, La Dorada, Caldas</p></div>
       </div>
-    </div>
-
-  
-    <div class="col-lg-6">
-      <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 bg-white">
-        
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.362145700201!2d-74.67057038522339!3d5.454942996024106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e40dfa1d8281313%3A0xc480e6fc8dafa492!2sLa%20Dorada%2C%20Caldas%2C%20Colombia!5e0!3m2!1ses!2sco!4v1698335000000!5m2!1ses!2sco" 
-          width="100%" 
-          height="100%" 
-          style="border:0; min-height: 400px;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+      <div>
+        <span class="contacto-icono"><i class="bi bi-telephone-fill" aria-hidden="true"></i></span>
+        <div><h2>Teléfono</h2><p><a href="tel:+573001234567">+57 300 123 4567</a></p></div>
       </div>
-    </div>
+      <div>
+        <span class="contacto-icono"><i class="bi bi-envelope-fill" aria-hidden="true"></i></span>
+        <div><h2>Correo</h2><p><a href="mailto:contacto@micacharrito.com">contacto&#64;micacharrito.com</a></p></div>
+      </div>
+      <div>
+        <span class="contacto-icono"><i class="bi bi-clock-fill" aria-hidden="true"></i></span>
+        <div><h2>Horario</h2><p>Lunes a sábado, de 8:00 a. m. a 7:00 p. m.</p></div>
+      </div>
+    </article>
 
-  </div>
-</div>
+    <div class="contacto-card contacto-mapa">
+      <iframe
+        title="Mapa de ubicación de Cacharrito en La Dorada, Caldas"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.362145700201!2d-74.67057038522339!3d5.454942996024106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e40dfa1d8281313%3A0xc480e6fc8dafa492!2sLa%20Dorada%2C%20Caldas%2C%20Colombia!5e0!3m2!1ses!2sco!4v1698335000000!5m2!1ses!2sco"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+</main>

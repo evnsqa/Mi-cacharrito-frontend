@@ -1,0 +1,57 @@
+<app-nav-admin-componente></app-nav-admin-componente>
+
+<main class="container historial-page">
+  <header class="historial-heading">
+    <p class="historial-eyebrow">Administración</p>
+    <h1>Historial de alquileres</h1>
+    <p>Consulta todos los alquileres registrados y su estado actual.</p>
+  </header>
+
+  <section class="admin-table-wrap" aria-label="Historial de alquileres">
+    <table class="admin-table table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">N.º alquiler</th>
+          <th scope="col">Placa</th>
+          <th scope="col">Color</th>
+          <th scope="col">Fecha de inicio</th>
+          <th scope="col">Fecha de entrega</th>
+          <th scope="col">Valor total</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (cargando()) {
+          <tr><td colspan="7" class="history-message">Cargando el historial…</td></tr>
+        } @else if (errorCarga()) {
+          <tr><td colspan="7" class="history-message history-error">No se pudo cargar el historial. Intenta actualizar la página.</td></tr>
+        } @else {
+          @for (alquiler of datosPaginados(); track alquiler.numeroAlquiler) {
+            <tr>
+              <td class="text-center">{{ alquiler.numeroAlquiler }}</td>
+              <td class="text-center">{{ alquiler.vehiculos?.placa || '—' }}</td>
+              <td class="text-center">{{ alquiler.vehiculos?.color || '—' }}</td>
+              <td class="text-center">{{ alquiler.fechaInicio || '—' }}</td>
+              <td class="text-center">{{ alquiler.fechaEntrega || '—' }}</td>
+              <td class="text-center">{{ alquiler.valorTotal | currency:'COP':'symbol':'1.0-0' }}</td>
+              <td class="text-center"><span class="estado-alquiler">{{ alquiler.estado || 'Sin estado' }}</span></td>
+            </tr>
+          } @empty {
+            <tr><td colspan="7" class="history-message">No hay alquileres registrados.</td></tr>
+          }
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <div class="historial-resumen">
+    <span>Total acumulado de alquileres</span>
+    <strong>{{ subtotal() | currency:'COP':'symbol':'1.0-0' }}</strong>
+  </div>
+
+  <nav class="admin-pagination" aria-label="Paginación del historial">
+    <button type="button" (click)="cambiarPagina(paginaActual() - 1)" [disabled]="paginaActual() === 1" aria-label="Página anterior">‹</button>
+    <span>Página {{ paginaActual() }} de {{ totalPaginas() }}</span>
+    <button type="button" (click)="cambiarPagina(paginaActual() + 1)" [disabled]="paginaActual() === totalPaginas()" aria-label="Página siguiente">›</button>
+  </nav>
+</main>

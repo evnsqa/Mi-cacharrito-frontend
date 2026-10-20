@@ -1,4 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+/* Tipografía, color y componentes compartidos de Cacharrito. */
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/recursos/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'SairaSemiCondensed-Bold';
@@ -109,6 +117,70 @@
 }
 
 .admin-pagination button:disabled { cursor: not-allowed; opacity: 0.45; }
+
+:root {
+  --cacharrito-blue: #255c7e;
+  --cacharrito-blue-dark: #19445f;
+  --cacharrito-cell: rgba(171, 170, 170, 0.673);
+}
+
+html, body { min-height: 100%; }
+
+body {
+  color: #111;
+  font-family: 'SairaSemiCondensed-Light', sans-serif;
+}
+
+h1, .page-title, .Tittle h1, .Tittle h2 {
+  color: var(--cacharrito-blue);
+  font-family: 'SairaSemiCondensed-Bold', sans-serif;
+  text-align: center;
+}
+
+h2, h3, h4, h5, h6 { font-family: 'SairaSemiCondensed-Medium', sans-serif; }
+
+.navbar .nav-link,
+.navbar .navbar-brand,
+.navbar .dropdown-item {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.navbar .nav-link { font-size: 0.8rem; letter-spacing: 0.035em; }
+
+table:not(.admin-table) thead th {
+  background-color: var(--cacharrito-blue) !important;
+  color: #fff !important;
+  font-family: 'SairaSemiCondensed-Medium', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+table:not(.admin-table) tbody td {
+  background-color: var(--cacharrito-cell);
+  color: #111;
+  font-family: 'SairaSemiCondensed-Light', sans-serif;
+}
+
+.btn-primary, .btn-success, .btn-danger, .btn-secondary,
+.boton-aceptar, .admin-pagination button {
+  border-color: var(--cacharrito-blue) !important;
+  background-color: var(--cacharrito-blue) !important;
+  color: #fff !important;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.btn-primary:hover, .btn-success:hover, .btn-danger:hover, .btn-secondary:hover,
+.boton-aceptar:hover, .admin-pagination button:hover:not(:disabled) {
+  border-color: var(--cacharrito-blue-dark) !important;
+  background-color: var(--cacharrito-blue-dark) !important;
+  color: #fff !important;
+}
+
+button:not(.navbar-toggler):not(.btn-close):not(.btn-outline-light) {
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
 
 @media (max-width: 700px) {
   .admin-table { min-width: 640px; }

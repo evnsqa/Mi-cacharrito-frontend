@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavAdminComponente } from '../nav-admin-componente/nav-admin-componente';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
 import { Alquileres } from '../entidades/alquileres';
+import { Vehiculo } from '../entidades/vehiculo';
+import { VehiculoServicio } from '../servicios/vehiculo-servicio';
 @Component({
   imports: [NavAdminComponente, CommonModule],
   selector: 'app-dashboard-admin-componente',
@@ -13,6 +15,7 @@ import { Alquileres } from '../entidades/alquileres';
 export class DashboardAdminComponente implements OnInit {
 
   alquileresPendientes = signal<Alquileres[]>([]);
+  vehiculosDisponibles = signal(0);
   aceptando = signal<number | null>(null);
   
   paginaActual = signal(1);
@@ -32,8 +35,12 @@ export class DashboardAdminComponente implements OnInit {
     )
   );
 
-  constructor(private alquilerServicio: AlquilerServicio) {}
+  constructor(
+    private alquilerServicio: AlquilerServicio,
+    private vehiculoServicio: VehiculoServicio,
+  ) {}
   ngOnInit(): void {
+    this.cargarVehiculosDisponibles();
     this.alquilerServicio.listarAlquileresPendientes().subscribe({
       next: (datos) => {
         this.alquileresPendientes.set(datos);
@@ -46,6 +53,17 @@ export class DashboardAdminComponente implements OnInit {
           err
         );
       }
+    });
+  }
+
+  private cargarVehiculosDisponibles(): void {
+    this.vehiculoServicio.listarVehiculo().subscribe({
+      next: (vehiculos: Vehiculo[]) => {
+        this.vehiculosDisponibles.set(
+          vehiculos.filter(v => v.estado?.trim().toLocaleLowerCase() === 'disponible').length,
+        );
+      },
+      error: (err) => console.error('Error al cargar los vehículos disponibles:', err),
     });
   }
 

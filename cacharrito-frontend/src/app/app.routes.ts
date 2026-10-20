@@ -8,6 +8,7 @@ export const routes: Routes = [
   { path: 'contacto', loadComponent: () => import('./contacto-componente/contacto-componente').then(m => m.ContactoComponente) },
   { path: 'ADMINISTRADOR', loadComponent: () => import('./administrador-componente/administrador-componente').then(m => m.AdministradorComponente) },
   { path: 'dashboardAdmin', loadComponent: () => import('./dashboard-admin-componente/dashboard-admin-componente').then(m => m.DashboardAdminComponente) },
+  { path: 'historialAlquileres', loadComponent: () => import('./historial-alquileres/historial-alquileres').then(m => m.HistorialAlquileres) },
   { path: 'inicioAdmin', redirectTo: 'dashboardAdmin', pathMatch: 'full' },
   { path: 'EntregarVehiculo', loadComponent: () => import('./entrega-vehiculo-componente/entrega-vehiculo-componente').then(m => m.EntregarVehiculoComponente) },
   { path: 'crudUsuario', loadComponent: () => import('./usuario-crud-comp/usuario-crud-comp').then(m => m.UsuarioCrudComp) },

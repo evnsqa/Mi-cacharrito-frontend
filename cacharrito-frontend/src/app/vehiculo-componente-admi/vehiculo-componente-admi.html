@@ -12,7 +12,7 @@
         <option value="" disabled selected>Buscar por:</option>
         <option value="placa">Placa</option>
         <option value="nombre">Nombre</option>
-        <option value="tipoVehiculo">Tipo Vehiculo</option>
+        <option value="tipoVehiculo">Tipo de vehículo</option>
         <option value="precio">Precio</option>
         <option value="estado">Estado</option>
       </select>
@@ -97,7 +97,7 @@
           <th scope="col" class="text-center">NOMBRE</th>
           <th scope="col" class="text-center">PLACA</th>
           <th scope="col" class="text-center">COLOR</th>
-          <th scope="col" class="text-center">TIPO DE VEHICULO</th>
+          <th scope="col" class="text-center">TIPO DE VEHÍCULO</th>
           <th scope="col" class="text-center">PRECIO</th>
           <th scope="col" class="text-center">ESTADO</th>
           <th scope="col" class="text-center">ACCIONES</th>
@@ -215,7 +215,7 @@
 
             </div>
             <div class="mb-3">
-              <label class="form-label">Tipo de vehiculo</label>
+              <label class="form-label">Tipo de vehículo</label>
               <select class="form-select" [(ngModel)]="vehiculo.tipoVehiculo" name="tipoVehiculo">
 
                 @for(tipoV of tipoVehiculos; track $index){

@@ -24,6 +24,8 @@ export class AlquilerServicio {
     private listarPendientesEntrega = `${API_BASE_URL}/alquileres/listarPendientesEntrega/`;
     private aceptar = `${API_BASE_URL}/alquileres/aceptarAlquiler/`;
     private buscarPorId = `${API_BASE_URL}/alquileres/buscarPorId/`;
+    private historialPorUsuario = `${API_BASE_URL}/alquileres/historialPorUsuario/`;
+    private historialCompleto = `${API_BASE_URL}/alquileres/historialCompleto/`;
     private pagar = `${API_BASE_URL}/alquileres/pagar/`;
     private entregar = `${API_BASE_URL}/alquileres/entregarVehiculo/`;
     private devolver = `${API_BASE_URL}/alquileres/devolverVehiculo/`;
@@ -36,6 +38,15 @@ export class AlquilerServicio {
     const params = new HttpParams().set("idUsuario", idUsuario);
     return this.httpCliente.get<Alquileres[]>(this.listarPorUsuario, { params: params });
 }
+
+    listarHistorialPorUsuario(idUsuario: string): Observable<Alquileres[]> {
+        const params = new HttpParams().set('idUsuario', idUsuario);
+        return this.httpCliente.get<Alquileres[]>(this.historialPorUsuario, { params });
+    }
+
+    listarHistorialCompleto(): Observable<Alquileres[]> {
+        return this.httpCliente.get<Alquileres[]>(this.historialCompleto);
+    }
 
     listarAlquileresEntregados(): Observable<Alquileres[]> {
     return this.httpCliente.get<Alquileres[]>(this.listarEntregados);

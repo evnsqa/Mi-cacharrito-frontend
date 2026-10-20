@@ -1,0 +1,76 @@
+.historial-page {
+  min-height: 75vh;
+  padding-top: 112px;
+  padding-bottom: 3rem;
+}
+
+.historial-heading {
+  margin: 0 auto 1.75rem;
+  text-align: center;
+}
+
+.historial-heading h1 {
+  margin-bottom: 0.5rem;
+  color: #255c7e;
+  font-family: 'SairaSemiCondensed-Bold', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  text-transform: uppercase;
+}
+
+.historial-heading p {
+  margin-bottom: 0;
+  color: #4b5563;
+  font-family: 'SairaSemiCondensed-Light', sans-serif;
+  font-size: 1.05rem;
+}
+
+.historial-heading .historial-eyebrow {
+  margin-bottom: 0.25rem;
+  color: #6b8798;
+  font-family: 'SairaSemiCondensed-Medium', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.history-message {
+  padding: 1.5rem !important;
+  color: #4b5563 !important;
+  text-align: center;
+}
+
+.history-error { color: #9f3333 !important; }
+
+.estado-alquiler {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(37, 92, 126, 0.12);
+  color: #255c7e;
+  font-family: 'SairaSemiCondensed-Medium', sans-serif;
+  text-transform: capitalize;
+}
+
+.historial-resumen {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(37, 92, 126, 0.16);
+  border-radius: 12px;
+  background: #eef4f7;
+  color: #255c7e;
+  font-family: 'SairaSemiCondensed-Medium', sans-serif;
+}
+
+.historial-resumen strong { font-size: 1.3rem; }
+
+@media (max-width: 575px) {
+  .historial-resumen {
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
