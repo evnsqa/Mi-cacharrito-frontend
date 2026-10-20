@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../entidades/usuario';
+import { API_BASE_URL } from './api.config';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,11 @@ import { Usuario } from '../entidades/usuario';
 
 export class UsuarioServicio {
     constructor(private httpCliente: HttpClient) {}
-    private listaUsuarios = "http://localhost:8080/api/usuarios/listarTodo"
-    private loginU = "http://localhost:8080/api/usuarios/login"
-    private registroU = "http://localhost:8080/api/usuarios/registro"
-    private buscarNombre = "http://localhost:8080/api/usuarios/nombreCompleto"
-    private eliminarU = "http://localhost:8080/api/usuarios/eliminarUsuario/"
+    private listaUsuarios = `${API_BASE_URL}/api/usuarios/listarTodo`
+    private loginU = `${API_BASE_URL}/api/usuarios/login`
+    private registroU = `${API_BASE_URL}/api/usuarios/registro`
+    private buscarNombre = `${API_BASE_URL}/api/usuarios/nombreCompleto`
+    private eliminarU = `${API_BASE_URL}/api/usuarios/eliminarUsuario/`
 
 
     listarUsusarios(): Observable<any>{

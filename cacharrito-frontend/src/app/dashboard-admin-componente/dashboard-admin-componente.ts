@@ -13,6 +13,7 @@ import { Alquileres } from '../entidades/alquileres';
 export class DashboardAdminComponente implements OnInit {
 
   alquileresPendientes = signal<Alquileres[]>([]);
+  aceptando = signal<number | null>(null);
   
   paginaActual = signal(1);
   itemsPorPagina = 10;
@@ -55,5 +56,29 @@ export class DashboardAdminComponente implements OnInit {
     ) {
       this.paginaActual.set(nuevaPagina);
     }
+  }
+
+  aceptarAlquiler(alquiler: Alquileres): void {
+    const id = alquiler.numeroAlquiler;
+    if (!confirm(`¿Deseas aprobar el alquiler #${id}? Se enviará un correo al cliente.`)) return;
+
+    this.aceptando.set(id);
+    this.alquilerServicio.aceptarAlquiler(id).subscribe({
+      next: (resultado) => {
+        this.alquileresPendientes.update(lista => lista.filter(item => item.numeroAlquiler !== id));
+        if (this.paginaActual() > this.totalPaginas() && this.totalPaginas() > 0) {
+          this.paginaActual.set(this.totalPaginas());
+        }
+        alert(resultado.correoEnviado
+          ? 'Solicitud aprobada. Se envió el enlace de pago al correo del cliente.'
+          : 'Solicitud aprobada, pero no se pudo enviar el correo. Revisa la configuración SMTP del backend. El cliente también podrá pagar desde “Mis alquileres”.');
+        this.aceptando.set(null);
+      },
+      error: (err) => {
+        alert(err.error?.mensaje ?? err.error ?? 'No se pudo aprobar el alquiler.');
+        console.error('Error al aprobar el alquiler:', err);
+        this.aceptando.set(null);
+      },
+    });
   }
 }

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  imports: [RouterOutlet, CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule],
   selector: 'app-navegacion',
   styleUrl: './navegacion.css',
   templateUrl: './navegacion.html',

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vehiculo } from '../entidades/vehiculo';
+import { API_BASE_URL } from './api.config';
 
 @Injectable({
     providedIn: 'root'
@@ -9,16 +10,16 @@ import { Vehiculo } from '../entidades/vehiculo';
 export class VehiculoServicio {
 
     constructor(private httpCliente: HttpClient){}
-    private listaV='http://localhost:8080/vehiculo/v/listarTodo/';
-    private listaT='http://localhost:8080/tipovehiculo/t/listarTodo/';
-    private guardarV='http://localhost:8080/vehiculo/v/guardarVehiculo/';
-    private eliminarV='http://localhost:8080/vehiculo/v/eliminarVehiculo/';
-    private buscarP='http://localhost:8080/vehiculo/v/buscarPlaca/';   
-    private buscarN='http://localhost:8080/vehiculo/v/buscarNom/'; 
-    private buscarPr='http://localhost:8080/vehiculo/v/buscarPrecio/'; 
-    private buscarE='http://localhost:8080/vehiculo/v/buscarEstado/'; 
-    private buscarT='http://localhost:8080/vehiculo/v/buscarPorTipo/';
-    private buscarTE='http://localhost:8080/vehiculo/v/buscarPorTipoEstado/';
+    private listaV=`${API_BASE_URL}/vehiculo/v/listarTodo/`;
+    private listaT=`${API_BASE_URL}/tipovehiculo/t/listarTodo/`;
+    private guardarV=`${API_BASE_URL}/vehiculo/v/guardarVehiculo/`;
+    private eliminarV=`${API_BASE_URL}/vehiculo/v/eliminarVehiculo/`;
+    private buscarP=`${API_BASE_URL}/vehiculo/v/buscarPlaca/`;
+    private buscarN=`${API_BASE_URL}/vehiculo/v/buscarNom/`;
+    private buscarPr=`${API_BASE_URL}/vehiculo/v/buscarPrecio/`;
+    private buscarE=`${API_BASE_URL}/vehiculo/v/buscarEstado/`;
+    private buscarT=`${API_BASE_URL}/vehiculo/v/buscarPorTipo/`;
+    private buscarTE=`${API_BASE_URL}/vehiculo/v/buscarPorTipoEstado/`;
 
 
     listarVehiculo(): Observable<any>{

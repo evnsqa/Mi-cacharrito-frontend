@@ -1,0 +1,64 @@
+<button
+  class="chat-launcher"
+  type="button"
+  (click)="alternarChat()"
+  [attr.aria-expanded]="abierto"
+  aria-controls="cacharrito-chat-panel"
+  aria-label="Abrir ayuda de Cacharrito"
+>
+  <i class="bi" [class.bi-chat-dots-fill]="!abierto" [class.bi-x-lg]="abierto" aria-hidden="true"></i>
+  <span>{{ abierto ? 'Cerrar' : 'Ayuda' }}</span>
+</button>
+
+@if (abierto) {
+  <section
+    class="chat-panel"
+    id="cacharrito-chat-panel"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="chat-title"
+  >
+    <header class="chat-header">
+      <div class="chat-avatar" aria-hidden="true"><i class="bi bi-car-front-fill"></i></div>
+      <div>
+        <h2 id="chat-title">Ayuda Cacharrito</h2>
+        <p><span class="status-dot"></span> Respuestas rápidas</p>
+      </div>
+      <button class="chat-close" type="button" (click)="alternarChat()" aria-label="Cerrar chat">
+        <i class="bi bi-x-lg" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <div class="chat-content" aria-live="polite">
+      @if (mensajes.length === 0) {
+        <div class="bot-message">
+          ¡Hola! Soy el asistente de Cacharrito. Elige una pregunta y te ayudo con las funciones del sitio.
+        </div>
+        <p class="question-label">Preguntas frecuentes</p>
+        <div class="question-list">
+          @for (pregunta of preguntas; track pregunta.question) {
+            <button type="button" class="question-button" (click)="seleccionarPregunta(pregunta)">
+              {{ pregunta.question }}
+              <i class="bi bi-arrow-up-left" aria-hidden="true"></i>
+            </button>
+          }
+        </div>
+      } @else {
+        <div class="message-list">
+          @for (mensaje of mensajes; track $index) {
+            <div class="message-row" [class.from-user]="mensaje.author === 'user'">
+              <p [class.user-message]="mensaje.author === 'user'" [class.bot-message]="mensaje.author === 'bot'">
+                {{ mensaje.text }}
+              </p>
+            </div>
+          }
+        </div>
+        <button type="button" class="back-to-questions" (click)="reiniciarChat()">
+          <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Ver preguntas frecuentes
+        </button>
+      }
+    </div>
+
+    <footer class="chat-footer">Asistente informativo · Cacharrito</footer>
+  </section>
+}
