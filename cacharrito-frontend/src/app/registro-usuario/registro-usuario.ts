@@ -13,10 +13,33 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class RegistroUsuario {
 
+  readonly fechaHoy = this.fechaLocal(new Date());
   constructor(private servicioUsuario: UsuarioServicio, private router: Router){}
   usuarioNuevo: Usuario = new Usuario;
 
+  get fechaMinimaVigencia(): string {
+    const expedicion = this.usuarioNuevo.fechaExpedicionLicencia;
+    return expedicion && expedicion > this.fechaHoy ? expedicion : this.fechaHoy;
+  }
+
   registrar() {
+    const { fechaExpedicionLicencia, vigenciaLicencia } = this.usuarioNuevo;
+    if (!fechaExpedicionLicencia || !vigenciaLicencia) {
+      alert('Ingresa las fechas de expedición y vencimiento de la licencia.');
+      return;
+    }
+    if (fechaExpedicionLicencia > this.fechaHoy) {
+      alert('La fecha de expedición no puede ser posterior a hoy.');
+      return;
+    }
+    if (vigenciaLicencia < fechaExpedicionLicencia) {
+      alert('La fecha de inicio de la licencia no puede ser posterior a la fecha de vencimiento.');
+      return;
+    }
+    if (vigenciaLicencia < this.fechaHoy) {
+      alert('No puedes registrarte con una licencia vencida.');
+      return;
+    }
     this.servicioUsuario.registroUsuario(this.usuarioNuevo).subscribe({
       next: (dato) => {
         console.log(dato);
@@ -24,10 +47,19 @@ export class RegistroUsuario {
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        alert("Error al registrar, llene todos los campos correctamente.");
+        const mensaje = typeof err.error === 'string'
+          ? err.error
+          : err.error?.mensaje ?? 'Error al registrar. Revisa los campos e inténtalo de nuevo.';
+        alert(mensaje);
         console.error(err);
       }
     });
+  }
+
+  private fechaLocal(fecha: Date): string {
+    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+    const dia = String(fecha.getDate()).padStart(2, '0');
+    return `${fecha.getFullYear()}-${mes}-${dia}`;
   }
 
 }

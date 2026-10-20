@@ -47,6 +47,8 @@
     
 }
 
+.tableAlquileresP { overflow-x: auto; border-radius: 16px; }
+
 .tableAlquileresP td {
     font-family:'SairaSemiCondensed-Light';
     color: black;

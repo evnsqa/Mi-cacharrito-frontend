@@ -99,4 +99,25 @@ export class DashboardAdminComponente implements OnInit {
       },
     });
   }
+
+  rechazarSolicitud(alquiler: Alquileres): void {
+    const id = alquiler.numeroAlquiler;
+    if (!confirm(`¿Rechazar el alquiler #${id}? Se cancelará, se guardará en el historial y se notificará al cliente por correo.`)) return;
+    this.aceptando.set(id);
+    this.alquilerServicio.rechazarAlquiler(id).subscribe({
+      next: (resultado) => {
+        this.alquileresPendientes.update(lista => lista.filter(item => item.numeroAlquiler !== id));
+        if (this.paginaActual() > this.totalPaginas() && this.totalPaginas() > 0) this.paginaActual.set(this.totalPaginas());
+        alert(resultado.correoEnviado
+          ? 'Solicitud rechazada y cliente notificado por correo.'
+          : 'La solicitud quedó cancelada y pasó al historial, pero no se pudo enviar el correo. Revisa la configuración SMTP.');
+        this.aceptando.set(null);
+      },
+      error: (err) => {
+        alert(err.error?.mensaje ?? err.error ?? 'No se pudo rechazar el alquiler.');
+        console.error('Error al rechazar el alquiler:', err);
+        this.aceptando.set(null);
+      },
+    });
+  }
 }

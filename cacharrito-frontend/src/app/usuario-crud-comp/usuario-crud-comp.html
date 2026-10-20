@@ -1,16 +1,18 @@
 <app-nav-admin-componente></app-nav-admin-componente>
-<br><br><br><br>
-<div class="container-fluid py-4">
+<main class="container-fluid admin-page">
   <div class="card shadow-sm border-0 rounded-3">
     <div class="card-body p-4">
 
-      <h1>ESTA ES LA PÁGINA DE USUARIOS</h1><br><br>
+      <header class="admin-page-heading">
+        <p>Administración</p>
+        <h1>USUARIOS</h1>
+      </header>
 
       <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
 
         <div class="w-100" style="max-width: 300px;">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Buscar por nombre..." [(ngModel)]="busqueda">
+            <input type="text" class="form-control" placeholder="Buscar por nombre..." [(ngModel)]="busqueda" maxlength="100">
 
             <button class="btn btn-primary" type="button" (click)="buscarUsuario()">
               Buscar
@@ -100,23 +102,23 @@
               <form>
                 <div class="mb-3">
                   <label class="form-label">Identificación</label>
-                  <input type="text" class="form-control" [(ngModel)]="usuarioA.idUsuario" name="idUsuario">
+                  <input type="text" class="form-control" [(ngModel)]="usuarioA.idUsuario" name="idUsuario" maxlength="20" pattern="[0-9]{1,20}" inputmode="numeric">
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Nombre</label>
-                  <input type="text" class="form-control" [(ngModel)]="usuarioA.nombreCompleto" name="nombreCompleto">
+                  <input type="text" class="form-control" [(ngModel)]="usuarioA.nombreCompleto" name="nombreCompleto" maxlength="100">
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Correo Electronico</label>
-                  <input type="text" class="form-control" [(ngModel)]="usuarioA.correoElectronico"
-                    name="correoElectronico">
+                  <input type="email" class="form-control" [(ngModel)]="usuarioA.correoElectronico"
+                    name="correoElectronico" maxlength="254" type="email">
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Teléfono</label>
-                  <input type="text" class="form-control" [(ngModel)]="usuarioA.telefono" name="telefono">
+                  <input type="tel" class="form-control" [(ngModel)]="usuarioA.telefono" name="telefono" maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric">
                 </div>
 
                 <div class="mb-3">
@@ -155,3 +157,7 @@
 
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</main>

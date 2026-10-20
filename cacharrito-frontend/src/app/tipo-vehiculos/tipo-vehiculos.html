@@ -1,7 +1,9 @@
 <app-nav-admin-componente></app-nav-admin-componente>
-<br><br><br><br>
-<div class="container">
-  <h1>ESTA ES LA PÁGINA DE TIPOS DE VEHÍCULOS</h1><br>
+<main class="container admin-page">
+  <header class="admin-page-heading">
+    <p>Administración</p>
+    <h1>TIPO VEHÍCULOS</h1>
+  </header>
 
   <hr>
   <button class="btn btn-primary" (click)="abrirModal()">Registrar</button>
@@ -21,7 +23,7 @@
     @if (busqueda === 'id') {
     <div class="col-sm-4 col-md-3">
       <input type="number" id="id" name="idBusqueda" class="form-control" placeholder="Ingrese el id"
-        [(ngModel)]="idTV">
+        [(ngModel)]="idTV" min="1" max="9999999999999999999">
     </div>
     <div class="col-auto">
       <button type="button" (click)="verId()" class="btn btn-primary">Buscar</button>
@@ -34,7 +36,7 @@
     @if (busqueda === 'nombre') {
     <div class="col-sm-4 col-md-3">
       <input type="text" id="nombre" name="nombreBusqueda" class="form-control" placeholder="Ingrese el nombre"
-        [(ngModel)]="nombreTV">
+        [(ngModel)]="nombreTV" maxlength="50">
     </div>
     <div class="col-auto">
       <button type="button" (click)="verNombre()" class="btn btn-primary">Buscar</button>
@@ -120,7 +122,7 @@
             <div class="mb-3">
               <label class="form-label">Nombre</label>
               <input for="inputNombre" type="text" class="form-control" [(ngModel)]="tipoVehiculo.nombre" name="nombre"
-                required>
+                required maxlength="50">
             </div>
 
             <div class="modal-footer">
@@ -135,4 +137,4 @@
 
     </div>
   </div>
-</div>
+</main>

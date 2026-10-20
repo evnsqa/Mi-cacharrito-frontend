@@ -27,7 +27,9 @@ export class HistorialAlquileres implements OnInit {
   );
 
   subtotal = computed(() =>
-    this.historialAlquileres().reduce((total, alquiler) => total + Number(alquiler.valorTotal || 0), 0),
+    this.historialAlquileres()
+      .filter(alquiler => alquiler.estado?.trim().toLocaleLowerCase() !== 'cancelado')
+      .reduce((total, alquiler) => total + Number(alquiler.valorTotal || 0), 0),
   );
 
   constructor(private readonly alquilerServicio: AlquilerServicio) {}

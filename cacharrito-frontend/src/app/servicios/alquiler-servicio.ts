@@ -23,6 +23,7 @@ export class AlquilerServicio {
     private listarPendientes = `${API_BASE_URL}/alquileres/listarPendientes/`;
     private listarPendientesEntrega = `${API_BASE_URL}/alquileres/listarPendientesEntrega/`;
     private aceptar = `${API_BASE_URL}/alquileres/aceptarAlquiler/`;
+    private rechazar = `${API_BASE_URL}/alquileres/rechazarAlquiler/`;
     private buscarPorId = `${API_BASE_URL}/alquileres/buscarPorId/`;
     private historialPorUsuario = `${API_BASE_URL}/alquileres/historialPorUsuario/`;
     private historialCompleto = `${API_BASE_URL}/alquileres/historialCompleto/`;
@@ -68,6 +69,11 @@ export class AlquilerServicio {
     aceptarAlquiler(id: number): Observable<ResultadoAceptacion> {
         const params = new HttpParams().set('id', id);
         return this.httpCliente.post<ResultadoAceptacion>(this.aceptar, null, { params });
+    }
+
+    rechazarAlquiler(id: number): Observable<ResultadoAceptacion> {
+        const params = new HttpParams().set('id', id);
+        return this.httpCliente.post<ResultadoAceptacion>(this.rechazar, null, { params });
     }
 
     buscarAlquiler(id: number): Observable<Alquileres> {

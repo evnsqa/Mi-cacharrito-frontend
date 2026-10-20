@@ -73,7 +73,7 @@
                         <label for="fechaEntrega" class="form-label fw-bold">Fecha de Entrega</label>
 
                         <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" required
-                            [min]="fechaMinima" [(ngModel)]="nuevoAlquiler.fechaEntrega">
+                            [min]="nuevoAlquiler.fechaInicio || fechaMinima" [(ngModel)]="nuevoAlquiler.fechaEntrega">
                     </div>
 
                     <div class="col-md-2 mb-3 d-flex align-items-end">

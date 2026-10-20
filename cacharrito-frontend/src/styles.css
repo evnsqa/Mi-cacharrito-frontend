@@ -139,6 +139,32 @@ h1, .page-title, .Tittle h1, .Tittle h2 {
 
 h2, h3, h4, h5, h6 { font-family: 'SairaSemiCondensed-Medium', sans-serif; }
 
+.admin-page { padding-top: 112px; padding-bottom: 2.5rem; }
+.admin-page-heading { margin: 0 auto 1.75rem; text-align: center; }
+.admin-page-heading p { margin: 0 0 .25rem; color: #6b8798; font: 500 .85rem 'SairaSemiCondensed-Medium', sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.admin-page-heading h1 { margin: 0; color: var(--cacharrito-blue); font: 700 clamp(1.8rem, 3vw, 2.35rem) 'SairaSemiCondensed-Bold', sans-serif; text-transform: uppercase; }
+
+table.table {
+  overflow: hidden;
+  border: 1px solid rgba(37, 92, 126, .14);
+  border-radius: 16px;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  box-shadow: 0 12px 32px rgba(20, 47, 67, .08);
+}
+
+.tableAlquileresP, .tableMisAlquileres, .tableMisAlquileresP,
+.tableDevolverV, .tableEntregarV, .tableHistorial {
+  overflow-x: auto;
+  border: 1px solid rgba(37, 92, 126, .14);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(20, 47, 67, .08);
+}
+
+.tableAlquileresP table, .tableMisAlquileres table, .tableMisAlquileresP table,
+.tableDevolverV table, .tableEntregarV table { min-width: 680px; margin: 0; }
+
 .navbar .nav-link,
 .navbar .navbar-brand,
 .navbar .dropdown-item {
@@ -155,12 +181,34 @@ table:not(.admin-table) thead th {
   font-family: 'SairaSemiCondensed-Medium', sans-serif;
   text-align: center;
   text-transform: uppercase;
+  padding: .95rem 1rem;
+  border: 0 !important;
+  border-bottom: 1px solid #1e4d69 !important;
+  white-space: nowrap;
 }
 
 table:not(.admin-table) tbody td {
-  background-color: var(--cacharrito-cell);
-  color: #111;
-  font-family: 'SairaSemiCondensed-Light', sans-serif;
+  background-color: var(--cacharrito-cell) !important;
+  color: #111 !important;
+  font-family: 'SairaSemiCondensed-Light', sans-serif !important;
+  padding: .85rem 1rem;
+  border: 0 !important;
+  border-bottom: 1px solid #e9eff3 !important;
+  vertical-align: middle;
+}
+
+table.table tbody tr:hover td { background-color: #dfe9ef !important; }
+
+.paginacion:not(.admin-pagination) { display:flex; justify-content:center; align-items:center; gap:1rem; margin:1rem 0; color:#526976; font:500 1rem 'SairaSemiCondensed-Medium',sans-serif; }
+.paginacion:not(.admin-pagination) button { display:grid; width:2.35rem; height:2.35rem; place-items:center; border:1px solid #255c7e; border-radius:10px; background:#255c7e; color:#fff; }
+.paginacion:not(.admin-pagination) button:hover:not(:disabled) { background:#19445f; }
+.paginacion:not(.admin-pagination) button:disabled { cursor:not-allowed; opacity:.45; }
+
+.admin-pagination button {
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border-radius: 10px !important;
 }
 
 .btn-primary, .btn-success, .btn-danger, .btn-secondary,

@@ -11,13 +11,13 @@
           <div class="mb-4">
             <label for="identificacion" class="label-pequeno fw-bold">Número de identificación</label>
             <input type="text" class="form-control input-linea" id="identificacion" name="usuarioLogin"
-              [(ngModel)]="usuarioLogin" required>
+              [(ngModel)]="usuarioLogin" required maxlength="20">
           </div>
 
           <div class="mb-5">
             <label for="password" class="label-pequeno fw-bold">Contraseña</label>
             <input type="password" class="form-control input-linea" id="password" name="passwordLogin"
-              [(ngModel)]="passwordLogin" required>
+              [(ngModel)]="passwordLogin" required maxlength="72">
           </div>
 
           <div class="mb-5 form-check d-flex align-items-center">

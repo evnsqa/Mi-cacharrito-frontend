@@ -35,7 +35,7 @@
 <div class="row justify-content-center">
 <div class="col-md-10">
     <div class="tableAlquileresP">
-        <table class="table table-striped table-hover table-bordered">
+        <table class="table table-striped table-hover table-bordered admin-table">
             <thead>
             <tr>
                 <th scope="col" class="text-center">PLACA</th>
@@ -63,6 +63,11 @@
                                         (click)="aceptarAlquiler(alquiler)">
                                         {{ aceptando() === alquiler.numeroAlquiler ? 'Procesando...' : 'Aceptar' }}
                                     </button>
+                                    <button class="btn btn-danger btn-sm ms-2" type="button"
+                                        [disabled]="aceptando() === alquiler.numeroAlquiler"
+                                        (click)="rechazarSolicitud(alquiler)">
+                                        {{ aceptando() === alquiler.numeroAlquiler ? 'Procesando...' : 'Rechazar' }}
+                                    </button>
                                 </td>
                             </tr>
                         } @empty {
@@ -74,7 +79,7 @@
     </table>
 
             </div>
-            <div class="paginacion">
+            <div class="paginacion admin-pagination">
 
                 <button type="button"(click)="cambiarPagina(paginaActual() - 1)"[disabled]="paginaActual() === 1">
                     <
