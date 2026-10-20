@@ -18,13 +18,13 @@
 
             <div class="form-floating mb-3">
               <input type="text" class="form-control input-cristal" id="nombre" name="nombreCompleto"
-                [(ngModel)]="usuarioNuevo.nombreCompleto" placeholder="Nombre completo" required maxlength="100">
+                [(ngModel)]="usuarioNuevo.nombreCompleto" placeholder="Nombre completo" required maxlength="50">
               <label for="nombre">Nombre completo</label>
             </div>
 
             <div class="form-floating mb-3">
               <input type="text" class="form-control input-cristal" id="identificacion" name="idUsuario"
-                [(ngModel)]="usuarioNuevo.idUsuario" placeholder="Número de identificación" required maxlength="20" pattern="[0-9]{1,20}" inputmode="numeric">
+                [(ngModel)]="usuarioNuevo.idUsuario" (input)="limitarDigitos($event, 'idUsuario')" placeholder="Número de identificación" required maxlength="10" pattern="[0-9]{1,10}" inputmode="numeric">
               <label for="identificacion">Número de identificación</label>
             </div>
 
@@ -47,7 +47,7 @@
 
             <div class="form-floating mb-3">
               <input type="tel" class="form-control input-cristal" id="telefono" name="telefono"
-                [(ngModel)]="usuarioNuevo.telefono" placeholder="Teléfono" required maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric">
+                [(ngModel)]="usuarioNuevo.telefono" (input)="limitarDigitos($event, 'telefono')" placeholder="Teléfono" required maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric">
               <label for="telefono">Número de teléfono</label>
             </div>
 

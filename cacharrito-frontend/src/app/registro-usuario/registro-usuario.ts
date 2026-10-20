@@ -17,6 +17,13 @@ export class RegistroUsuario {
   constructor(private servicioUsuario: UsuarioServicio, private router: Router){}
   usuarioNuevo: Usuario = new Usuario;
 
+  limitarDigitos(evento: Event, campo: 'idUsuario' | 'telefono'): void {
+    const input = evento.target as HTMLInputElement;
+    const valor = input.value.replace(/\D/g, '').slice(0, 10);
+    input.value = valor;
+    this.usuarioNuevo[campo] = valor;
+  }
+
   get fechaMinimaVigencia(): string {
     const expedicion = this.usuarioNuevo.fechaExpedicionLicencia;
     return expedicion && expedicion > this.fechaHoy ? expedicion : this.fechaHoy;

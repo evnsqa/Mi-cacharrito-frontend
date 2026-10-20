@@ -5,6 +5,7 @@ import { AlquilerServicio } from '../servicios/alquiler-servicio';
 import { Alquileres } from '../entidades/alquileres';
 import { Vehiculo } from '../entidades/vehiculo';
 import { VehiculoServicio } from '../servicios/vehiculo-servicio';
+import { forkJoin } from 'rxjs';
 @Component({
   imports: [NavAdminComponente, CommonModule],
   selector: 'app-dashboard-admin-componente',
@@ -30,9 +31,9 @@ export class DashboardAdminComponente implements OnInit {
   });
 
   totalPaginas = computed(() =>
-    Math.ceil(
+    Math.max(1, Math.ceil(
       this.alquileresPendientes().length / this.itemsPorPagina
-    )
+    ))
   );
 
   constructor(
@@ -40,7 +41,7 @@ export class DashboardAdminComponente implements OnInit {
     private vehiculoServicio: VehiculoServicio,
   ) {}
   ngOnInit(): void {
-    this.cargarVehiculosDisponibles();
+    this.cargarConteoDisponibles();
     this.alquilerServicio.listarAlquileresPendientes().subscribe({
       next: (datos) => {
         this.alquileresPendientes.set(datos);
@@ -56,14 +57,26 @@ export class DashboardAdminComponente implements OnInit {
     });
   }
 
-  private cargarVehiculosDisponibles(): void {
-    this.vehiculoServicio.listarVehiculo().subscribe({
-      next: (vehiculos: Vehiculo[]) => {
-        this.vehiculosDisponibles.set(
-          vehiculos.filter(v => v.estado?.trim().toLocaleLowerCase() === 'disponible').length,
+  private cargarConteoDisponibles(): void {
+    forkJoin({
+      vehiculos: this.vehiculoServicio.listarVehiculo(),
+      solicitudesPendientes: this.alquilerServicio.listarAlquileresPendientes(),
+    }).subscribe({
+      next: ({ vehiculos, solicitudesPendientes }: { vehiculos: Vehiculo[]; solicitudesPendientes: Alquileres[] }) => {
+        const placasDisponibles = new Set(
+          vehiculos
+            .filter(vehiculo => vehiculo.estado?.trim().toLocaleLowerCase() === 'disponible')
+            .map(vehiculo => vehiculo.placa),
         );
+        // El vehículo cambia a "Reservado" al enviar la solicitud; se sigue contando
+        // hasta que la aprobación la saque de la lista de solicitudes pendientes.
+        for (const alquiler of solicitudesPendientes) {
+          const placa = alquiler.vehiculos?.placa;
+          if (placa) placasDisponibles.add(placa);
+        }
+        this.vehiculosDisponibles.set(placasDisponibles.size);
       },
-      error: (err) => console.error('Error al cargar los vehículos disponibles:', err),
+      error: (err) => console.error('Error al cargar el conteo de vehículos disponibles:', err),
     });
   }
 
@@ -84,6 +97,7 @@ export class DashboardAdminComponente implements OnInit {
     this.alquilerServicio.aceptarAlquiler(id).subscribe({
       next: (resultado) => {
         this.alquileresPendientes.update(lista => lista.filter(item => item.numeroAlquiler !== id));
+        this.cargarConteoDisponibles();
         if (this.paginaActual() > this.totalPaginas() && this.totalPaginas() > 0) {
           this.paginaActual.set(this.totalPaginas());
         }
@@ -107,6 +121,7 @@ export class DashboardAdminComponente implements OnInit {
     this.alquilerServicio.rechazarAlquiler(id).subscribe({
       next: (resultado) => {
         this.alquileresPendientes.update(lista => lista.filter(item => item.numeroAlquiler !== id));
+        this.cargarConteoDisponibles();
         if (this.paginaActual() > this.totalPaginas() && this.totalPaginas() > 0) this.paginaActual.set(this.totalPaginas());
         alert(resultado.correoEnviado
           ? 'Solicitud rechazada y cliente notificado por correo.'

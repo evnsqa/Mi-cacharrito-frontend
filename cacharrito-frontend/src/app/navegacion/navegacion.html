@@ -31,8 +31,8 @@
       <div class="d-flex ms-auto align-items-center">
 
         <ng-container *ngIf="!usuarioActivo">
-          <a routerLink="/login" class="btn btn-outline-light me-2">Iniciar Sesión</a>
-          <a routerLink="/registro" class="btn botonRegistro me-2" >Registrarse</a>
+          <a routerLink="/login" class="btn btn-outline-light me-2">INICIAR SESIÓN</a>
+          <a routerLink="/registro" class="btn botonRegistro me-2" >REGISTRARSE</a>
           <a routerLink="/ADMINISTRADOR" class="btn btn-carrito position-relative me-3">
             <i class="bi bi-person-lock"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
@@ -45,7 +45,7 @@
         <ng-container *ngIf="usuarioActivo">
           <span class="text-white fw-bold me-3">Hola, {{ usuarioActivo.nombreCompleto }}</span>
           <button (click)="cerrarSesion()" class="btn btn-salir btn-sm me-2">
-            <i class="bi bi-box-arrow-right me-1"></i> Cerrar Sesión
+            <i class="bi bi-box-arrow-right me-1"></i> CERRAR SESIÓN
           </button>
           <a routerLink="/misAlquileres" class="btn btn-carrito position-relative me-3">
             <i class="bi bi-cart3"></i>

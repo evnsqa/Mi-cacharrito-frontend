@@ -137,7 +137,7 @@ export class AlquilerComponente implements OnInit {
     text('Tipo de Vehículo', vehiculo?.tipoVehiculo?.nombre, 21, 128);
     text('Placa', vehiculo?.placa, 21, 135);
     text('Color', vehiculo?.color, 21, 142);
-    text('Estado del Vehículo', vehiculo?.estado, 21, 149);
+    text('Estado del Vehículo', 'Disponible', 21, 149);
 
     doc.setLineWidth(0.25);
     doc.line(left, 160, right, 160);

@@ -87,37 +87,6 @@
 .admin-table .btn-success { background: #287b68; border-color: #287b68; }
 .admin-table .btn-danger { background: #b84747; border-color: #b84747; }
 
-.admin-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem;
-  color: #526976;
-  font-family: 'SairaSemiCondensed-Medium', sans-serif;
-}
-
-.admin-pagination button {
-  display: grid;
-  width: 2.35rem;
-  height: 2.35rem;
-  place-items: center;
-  border: 1px solid #d6e1e8;
-  border-radius: 10px;
-  background: #fff;
-  color: #255c7e;
-  font-size: 1.15rem;
-  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
-}
-
-.admin-pagination button:hover:not(:disabled) {
-  border-color: #255c7e;
-  background: #255c7e;
-  color: #fff;
-}
-
-.admin-pagination button:disabled { cursor: not-allowed; opacity: 0.45; }
-
 :root {
   --cacharrito-blue: #255c7e;
   --cacharrito-blue-dark: #19445f;
@@ -173,6 +142,8 @@ table.table {
   text-transform: uppercase;
 }
 
+.navbar .btn { text-transform: uppercase; }
+
 .navbar .nav-link { font-size: 0.8rem; letter-spacing: 0.035em; }
 
 table:not(.admin-table) thead th {
@@ -199,10 +170,10 @@ table:not(.admin-table) tbody td {
 
 table.table tbody tr:hover td { background-color: #dfe9ef !important; }
 
-.paginacion:not(.admin-pagination) { display:flex; justify-content:center; align-items:center; gap:1rem; margin:1rem 0; color:#526976; font:500 1rem 'SairaSemiCondensed-Medium',sans-serif; }
-.paginacion:not(.admin-pagination) button { display:grid; width:2.35rem; height:2.35rem; place-items:center; border:1px solid #255c7e; border-radius:10px; background:#255c7e; color:#fff; }
-.paginacion:not(.admin-pagination) button:hover:not(:disabled) { background:#19445f; }
-.paginacion:not(.admin-pagination) button:disabled { cursor:not-allowed; opacity:.45; }
+.paginacion, .admin-pagination { display:flex; justify-content:center; align-items:center; gap:1rem; margin:1rem 0; padding:1rem; color:#526976; font:500 1rem 'SairaSemiCondensed-Medium',sans-serif; }
+.paginacion button, .admin-pagination button { display:grid; width:2.35rem; height:2.35rem; padding:0; place-items:center; border:1px solid #255c7e; border-radius:10px !important; background:#255c7e; color:#fff; }
+.paginacion button:hover:not(:disabled), .admin-pagination button:hover:not(:disabled) { background:#19445f !important; border-color:#19445f !important; }
+.paginacion button:disabled, .admin-pagination button:disabled { cursor:not-allowed; opacity:.45; }
 
 .admin-pagination button {
   width: 2.35rem;

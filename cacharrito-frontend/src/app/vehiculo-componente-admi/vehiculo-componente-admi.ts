@@ -244,7 +244,7 @@ export class VehiculoComponenteAdmi implements OnInit {
   });
 
   totalPaginas = computed(() =>
-    Math.ceil(this.listaV().length / this.itemsPorPagina));
+    Math.max(1, Math.ceil(this.listaV().length / this.itemsPorPagina)));
 
   cambiarPagina(nuevaPagina: number) {
     if (nuevaPagina >= 1 && nuevaPagina <= this.totalPaginas()) {

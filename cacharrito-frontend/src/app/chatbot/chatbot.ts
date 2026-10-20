@@ -34,7 +34,7 @@ export class ChatbotComponent {
     {
       question: '¿Dónde veo mis alquileres?',
       answer:
-        'Cuando hayas iniciado sesión, abre “Mis alquileres” desde la navegación. Allí puedes consultar tus solicitudes y usar la opción de cancelar cuando esté disponible.',
+        'Después de iniciar sesión, selecciona el ícono del carrito de compras ubicado en la parte superior derecha. Allí podrás consultar tus alquileres y usar la opción de cancelar cuando esté disponible.',
     },
     {
       question: '¿Qué significa “pendiente de entrega”?',
@@ -44,7 +44,7 @@ export class ChatbotComponent {
     {
       question: '¿Cómo contacto a Cacharrito?',
       answer:
-        'Ve a la sección “Contacto” y completa el formulario. En esta versión del sitio el formulario solo muestra una confirmación en pantalla; todavía no envía el mensaje a un servicio de atención.',
+        'Puedes consultar los datos de contacto y la ubicación de Cacharrito en la página “Contacto”. Selecciona esa opción en el menú superior para ver la información y el mapa.',
     },
   ];
 

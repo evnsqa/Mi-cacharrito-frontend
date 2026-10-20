@@ -28,9 +28,9 @@ export class EntregarVehiculoComponente implements OnInit {
   });
 
   totalPaginas = computed(() =>
-    Math.ceil(
+    Math.max(1, Math.ceil(
       this.alquileresPendientes().length / this.itemsPorPagina
-    )
+    ))
   );
 
   constructor(private alquilerServicio: AlquilerServicio) {}

@@ -26,7 +26,7 @@ export class CancelarAlquilerComponente implements OnInit {
   });
 
   totalPaginas = computed(() =>
-    Math.ceil(this.alquileres().length / this.itemsPorPagina)
+    Math.max(1, Math.ceil(this.alquileres().length / this.itemsPorPagina))
   );
 
   constructor(private alquilerServicio: AlquilerServicio) {}

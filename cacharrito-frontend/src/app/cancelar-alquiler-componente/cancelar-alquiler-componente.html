@@ -34,13 +34,15 @@
             <td class="text-center">{{ alquiler.fechaInicio }} <br>hasta <br>{{ alquiler.fechaEntrega }}</td>
             <td class="text-center">{{ alquiler.estado }}</td>
             <td class="text-center">
+                <div class="mis-alquileres-actions">
                 @if (puedePagar(alquiler)) {
                     <a class="btn btn-primary btn-sm" [routerLink]="['/pago', alquiler.numeroAlquiler]">Pagar</a>
                 } @else if (puedeCancelar(alquiler)) {
-                    <button type="button" class="btn btn-danger" (click)="cancelarAlquiler(alquiler.numeroAlquiler)">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="cancelarAlquiler(alquiler.numeroAlquiler)">Cancelar</button>
                 } @else {
                     <span class="text-muted">Sin acciones</span>
                 }
+                </div>
             </td>
         </tr>
     } @empty {

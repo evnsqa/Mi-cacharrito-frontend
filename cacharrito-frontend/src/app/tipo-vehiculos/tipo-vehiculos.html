@@ -62,9 +62,9 @@
       <tbody>
         @for(i of datosPaginados(); track $index){
         <tr>
-          <td>{{i.idTipoVehiculo}}</td>
-          <td>{{i.nombre}}</td>
-          <td>
+          <td class="text-center">{{i.idTipoVehiculo}}</td>
+          <td class="text-center">{{i.nombre}}</td>
+          <td class="text-center">
             <button type="button" class="btn btn-danger m-2" (click)="eliminar(i.idTipoVehiculo)">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                 viewBox="0 0 16 16">

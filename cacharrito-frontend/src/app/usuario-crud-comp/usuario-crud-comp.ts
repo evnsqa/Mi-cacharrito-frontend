@@ -24,6 +24,8 @@ export class UsuarioCrudComp implements OnInit {
   busqueda: string = "";
   idU: string = "";
   usuarioA: Usuario = new Usuario;
+  esNuevoUsuario = false;
+  guardando = false;
 
   mostrarUsuarios(){
     this.servicioUsuario.listarUsusarios().subscribe(dato =>{
@@ -42,9 +44,24 @@ export class UsuarioCrudComp implements OnInit {
   }
 
   actualizarUsuario(u: Usuario){
-    this.usuarioA = u;
+    this.esNuevoUsuario = false;
+    this.usuarioA = { ...u, password: '' };
     this.abrirModal()
   }
+
+  abrirCrearUsuario(): void {
+    this.esNuevoUsuario = true;
+    this.usuarioA = new Usuario();
+    this.abrirModal();
+  }
+
+  limitarDigitos(evento: Event, campo: 'idUsuario' | 'telefono'): void {
+    const input = evento.target as HTMLInputElement;
+    const valor = input.value.replace(/\D/g, '').slice(0, 10);
+    input.value = valor;
+    this.usuarioA[campo] = valor;
+  }
+
   abrirModal(){
       const modal = document.getElementById("registro")
       if(modal!=null)
@@ -53,24 +70,29 @@ export class UsuarioCrudComp implements OnInit {
 
     cerrarModal(){
       this.usuarioA = new Usuario;
+      this.esNuevoUsuario = false;
       const modal = document.getElementById("registro")
       if(modal!=null)
         modal.style.display='none';
     }
 
     registrar() {
+    if (this.guardando) return;
+    this.guardando = true;
     this.servicioUsuario.registroUsuario(this.usuarioA).subscribe({
       next: (dato) => {
         console.log(dato);
-        alert("Actualizacion exitosa");
-        
+        alert(this.esNuevoUsuario ? 'Usuario creado correctamente.' : 'Actualización exitosa.');
+        this.guardando = false;
+        this.cerrarModal();
+        this.mostrarUsuarios();
       },
       error: (err) => {
-        alert("Error al actualizar: " + err.error);
+        alert((this.esNuevoUsuario ? 'Error al crear usuario: ' : 'Error al actualizar: ') + (err.error?.mensaje ?? err.error ?? 'revisa los datos e intenta de nuevo.'));
         console.error(err);
-      }
+        this.guardando = false;
+      },
     });
-    this.cerrarModal()
   }
   buscarUsuario() {
   if (this.busqueda.trim() === "") {
@@ -101,7 +123,7 @@ export class UsuarioCrudComp implements OnInit {
   });
 
   totalPaginas = computed(() =>
-    Math.ceil(this.listaU().length / this.itemsPorPagina));
+    Math.max(1, Math.ceil(this.listaU().length / this.itemsPorPagina)));
 
   cambiarPagina(nuevaPagina: number) {
     if (nuevaPagina >= 1 && nuevaPagina <= this.totalPaginas()) {

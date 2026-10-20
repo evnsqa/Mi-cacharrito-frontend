@@ -32,6 +32,7 @@ export class TipoVehiculosComponent implements OnInit {
   listar() {
     this.servicio.listarTipoVehiculo().subscribe(dato => {
       this.listaTV.set(dato);
+      this.paginaActual.set(1);
       console.log(dato);
       this.cdr.markForCheck();
     });
@@ -110,6 +111,7 @@ export class TipoVehiculosComponent implements OnInit {
       next: (dato) => {
         console.log('Vehiculos encontrados:', dato);
         this.listaTV.set([dato]);
+        this.paginaActual.set(1);
         this.cdr.markForCheck();
       },
       error: (err) => {
@@ -130,6 +132,7 @@ export class TipoVehiculosComponent implements OnInit {
       next: (dato) => {
         console.log('Vehiculos encontrados:', dato);
         this.listaTV.set(dato); 
+        this.paginaActual.set(1);
         this.cdr.markForCheck();
       },
       error: (err) => {
@@ -148,7 +151,7 @@ export class TipoVehiculosComponent implements OnInit {
   }
 
   paginaActual = signal(1);
-  itemsPorPagina = 2;
+  itemsPorPagina = 5;
 
 
   datosPaginados = computed(() => {
@@ -158,10 +161,10 @@ export class TipoVehiculosComponent implements OnInit {
   });
 
   totalPaginas = computed(() =>
-    Math.ceil(this.listaTV().length / this.itemsPorPagina));
+    Math.max(1, Math.ceil(this.listaTV().length / this.itemsPorPagina)));
 
   cambiarPagina(nuevaPagina: number) {
-    if (nuevaPagina >= 1 && nuevaPagina <= this.totalPaginas()) {
+    if (nuevaPagina >= 1 && nuevaPagina <= Math.max(1, this.totalPaginas())) {
       this.paginaActual.set(nuevaPagina);
     }
   }

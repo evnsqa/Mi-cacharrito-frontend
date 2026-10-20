@@ -41,25 +41,5 @@
 }
 
 
-.btn-danger {
-    width: 100%;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: 6px;
-    padding: 8px;
-    border: 1px solid #215c7a;
-    background-color: #215c7a;
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.btn-danger:hover {
-    background-color: #17455c;
-    border-color: #17455c;
-}
-
-.btn-danger:disabled {
-    background-color: #a6a7a9;
-    border-color: #a6a7a9;
-    cursor: not-allowed;
-}
+.mis-alquileres-actions { display: flex; justify-content: center; align-items: center; gap: .5rem; }
+.mis-alquileres-actions .btn { min-width: 112px; min-height: 36px; border-radius: 9px; font-weight: 700; text-transform: uppercase; }
