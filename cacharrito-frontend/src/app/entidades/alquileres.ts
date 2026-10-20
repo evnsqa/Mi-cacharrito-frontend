@@ -9,6 +9,7 @@ export class Alquileres {
     valorTotal: number;
     estado: string;
     fechaEntregaReal: string;
+    pagado: boolean;
     usuario: Usuario;
     administrador: Administrador; 
     vehiculos: Vehiculo; 

@@ -1,0 +1,67 @@
+<app-navegacion></app-navegacion>
+
+<main class="payment-page container py-5">
+  <div class="payment-card mx-auto">
+    <div class="payment-heading">
+      <span class="payment-icon"><i class="bi bi-shield-check" aria-hidden="true"></i></span>
+      <div>
+        <p class="eyebrow">ALQUILER #{{ idAlquiler }}</p>
+        <h1>Pago de reserva</h1>
+      </div>
+    </div>
+
+    @if (cargando) {
+      <p class="status-message">Cargando información del alquiler...</p>
+    } @else if (alquiler) {
+      <section class="rental-summary" aria-label="Resumen del alquiler">
+        <div><span>Vehículo</span><strong>{{ alquiler.vehiculos?.nombre }} · {{ alquiler.vehiculos?.placa }}</strong></div>
+        <div><span>Periodo</span><strong>{{ alquiler.fechaInicio }} — {{ alquiler.fechaEntrega }}</strong></div>
+        <div class="total-row"><span>Total de la reserva</span><strong>{{ alquiler.valorTotal | currency:'COP':'symbol-narrow':'1.0-0' }}</strong></div>
+      </section>
+
+      @if (resultado) {
+        <div class="payment-result" [class.success]="resultado === 'exito'" [class.failure]="resultado === 'error'" role="status">
+          <i class="bi" [class.bi-check-circle-fill]="resultado === 'exito'" [class.bi-exclamation-circle-fill]="resultado === 'error'" aria-hidden="true"></i>
+          <span>{{ mensajeResultado }}</span>
+        </div>
+      }
+
+      @if (alquiler.estado?.toLowerCase() === 'pendiente de pago' && resultado !== 'exito') {
+        <form #formPago="ngForm" (ngSubmit)="procesarPago()" class="payment-form">
+          <div class="demo-notice"><i class="bi bi-info-circle" aria-hidden="true"></i> Simulación académica: no se realizará un cobro ni se guardarán los datos de la tarjeta. No uses datos reales.</div>
+
+          <label for="titular" class="form-label">Nombre del titular</label>
+          <input id="titular" class="form-control" name="titular" [(ngModel)]="titular" required maxlength="80" autocomplete="off">
+
+          <label for="numeroTarjeta" class="form-label">Número de tarjeta de prueba</label>
+          <input id="numeroTarjeta" class="form-control" name="numeroTarjeta" [(ngModel)]="numeroTarjeta" required inputmode="numeric" maxlength="23" autocomplete="off" placeholder="1234 5678 9012 3456">
+
+          <div class="row g-3">
+            <div class="col-6">
+              <label for="vencimiento" class="form-label">Vencimiento (MM/AA)</label>
+              <input id="vencimiento" class="form-control" name="vencimiento" [(ngModel)]="vencimiento" required pattern="(0[1-9]|1[0-2])/[0-9]{2}" maxlength="5" placeholder="MM/AA" autocomplete="off">
+            </div>
+            <div class="col-6">
+              <label for="codigoSeguridad" class="form-label">CVV de prueba</label>
+              <input id="codigoSeguridad" class="form-control" name="codigoSeguridad" [(ngModel)]="codigoSeguridad" required pattern="[0-9]{3,4}" maxlength="4" inputmode="numeric" autocomplete="off">
+            </div>
+          </div>
+
+          <button class="btn pay-button w-100" type="submit" [disabled]="!formPago.valid || !formularioValido() || procesando">
+            {{ procesando ? 'Procesando...' : 'Pagar ' + (alquiler.valorTotal | currency:'COP':'symbol-narrow':'1.0-0') }}
+          </button>
+          <p class="test-card-hint">Para probar un rechazo, usa la tarjeta de prueba 4000 0000 0000 0002.</p>
+        </form>
+      } @else if (resultado === 'exito') {
+        <a class="btn pay-button w-100" routerLink="/misAlquileres">Volver a mis alquileres</a>
+      }
+    } @else {
+      <div class="payment-result failure" role="alert">
+        <span>{{ mensajeResultado }}</span>
+      </div>
+      @if (!cargando && resultado === 'error' && idAlquiler > 0) {
+        <button class="btn pay-button w-100" type="button" (click)="cargarAlquiler()">Intentar de nuevo</button>
+      }
+    }
+  </div>
+</main>

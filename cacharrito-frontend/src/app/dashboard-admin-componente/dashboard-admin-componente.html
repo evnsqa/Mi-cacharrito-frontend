@@ -42,7 +42,9 @@
                 <th scope="col" class="text-center">USUARIO</th>
                 <th scope="col" class="text-center">VEHÍCULO</th>
                 <th scope="col" class="text-center">FECHA INICIO</th>
+                <th scope="col" class="text-center">FECHA ENTREGA</th>
                 <th scope="col" class="text-center">ESTADO</th>
+                <th scope="col" class="text-center">ACCIÓN</th>
             </tr>
             </thead>
             
@@ -53,11 +55,19 @@
                                 <td class="text-center">{{ alquiler.usuario?.nombreCompleto }}</td>
                                 <td class="text-center">{{ alquiler.vehiculos?.tipoVehiculo.nombre }}</td>
                                 <td class="text-center">{{ alquiler.fechaInicio }}</td>
+                                <td class="text-center">{{ alquiler.fechaEntrega }}</td>
                                 <td class="text-center">{{ alquiler.estado }}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-success btn-sm" type="button"
+                                        [disabled]="aceptando() === alquiler.numeroAlquiler"
+                                        (click)="aceptarAlquiler(alquiler)">
+                                        {{ aceptando() === alquiler.numeroAlquiler ? 'Procesando...' : 'Aceptar' }}
+                                    </button>
+                                </td>
                             </tr>
                         } @empty {
                             <tr>
-                                <td colspan="5" class="text-center">No hay alquileres pendientes.</td>
+                                <td colspan="7" class="text-center">No hay solicitudes pendientes.</td>
                             </tr>
                         }
                     </tbody>

@@ -40,7 +40,7 @@ export class EntregarVehiculoComponente implements OnInit {
   }
 
   cargarAlquileres(): void {
-    this.alquilerServicio.listarAlquileresPendientes().subscribe({
+    this.alquilerServicio.listarPendientesDeEntrega().subscribe({
       next: (datos) => {
 
         this.alquileresPendientes.set(datos);

@@ -6,6 +6,7 @@ export class Vehiculo {
     color:string;
     precio:number;
     estado:string;
+    version:number;
     tipoVehiculo:TipoVehiculo;
     imagen:string;
 }

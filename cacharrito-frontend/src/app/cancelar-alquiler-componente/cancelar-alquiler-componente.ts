@@ -2,9 +2,10 @@ import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlquilerServicio } from '../servicios/alquiler-servicio';
 import { Navegacion } from '../navegacion/navegacion';
+import { RouterLink } from '@angular/router';
 import { Alquileres } from '../entidades/alquileres';
 @Component({
-  imports: [CommonModule, Navegacion],
+  imports: [CommonModule, Navegacion, RouterLink],
   selector: 'app-cancelar-alquiler-componente',
   styleUrl: './cancelar-alquiler-componente.css',
   templateUrl: './cancelar-alquiler-componente.html',
@@ -64,6 +65,15 @@ export class CancelarAlquilerComponente implements OnInit {
 
     }
 
+  }
+
+  puedeCancelar(alquiler: Alquileres): boolean {
+    const estado = alquiler.estado?.toLowerCase();
+    return estado === 'pendiente de aceptación' || (estado === 'pendiente de entrega' && !alquiler.pagado);
+  }
+
+  puedePagar(alquiler: Alquileres): boolean {
+    return alquiler.estado?.toLowerCase() === 'pendiente de pago';
   }
 
   cancelarAlquiler(numeroAlquiler: number) {

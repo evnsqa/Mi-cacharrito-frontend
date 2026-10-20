@@ -1,1 +1,116 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'SairaSemiCondensed-Bold';
+  src: url('/recursos/SairaSemiCondensed-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SairaSemiCondensed-Light';
+  src: url('/recursos/SairaSemiCondensed-Light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SairaSemiCondensed-Medium';
+  src: url('/recursos/SairaSemiCondensed-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(37, 92, 126, 0.12);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(20, 47, 67, 0.08);
+  scrollbar-color: #9bb5c5 #edf2f5;
+}
+
+.admin-table {
+  min-width: 680px;
+  margin: 0;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  color: #233746;
+  font-family: 'SairaSemiCondensed-Light', sans-serif;
+  font-size: 0.98rem;
+}
+
+.admin-table thead th {
+  padding: 0.95rem 1rem !important;
+  border: 0 !important;
+  border-bottom: 1px solid #1e4d69 !important;
+  background: #255c7e !important;
+  color: #fff !important;
+  font-family: 'SairaSemiCondensed-Medium', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.admin-table thead th:first-child { border-top-left-radius: 14px; }
+.admin-table thead th:last-child { border-top-right-radius: 14px; }
+
+.admin-table tbody td {
+  padding: 0.85rem 1rem !important;
+  border: 0 !important;
+  border-bottom: 1px solid #e9eff3 !important;
+  background: rgba(171, 170, 170, 0.673);
+  color: #111;
+  font-family: 'SairaSemiCondensed-Light', sans-serif;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:nth-child(even) td { background: rgba(171, 170, 170, 0.4); }
+.admin-table tbody tr:hover td { background: #dfe9ef; }
+.admin-table tbody tr:last-child td { border-bottom: 0 !important; }
+.admin-table .btn { border-radius: 9px; }
+.admin-table .btn-success { background: #287b68; border-color: #287b68; }
+.admin-table .btn-danger { background: #b84747; border-color: #b84747; }
+
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  color: #526976;
+  font-family: 'SairaSemiCondensed-Medium', sans-serif;
+}
+
+.admin-pagination button {
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  border: 1px solid #d6e1e8;
+  border-radius: 10px;
+  background: #fff;
+  color: #255c7e;
+  font-size: 1.15rem;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.admin-pagination button:hover:not(:disabled) {
+  border-color: #255c7e;
+  background: #255c7e;
+  color: #fff;
+}
+
+.admin-pagination button:disabled { cursor: not-allowed; opacity: 0.45; }
+
+@media (max-width: 700px) {
+  .admin-table { min-width: 640px; }
+  .admin-table thead th, .admin-table tbody td { padding: 0.75rem !important; }
+}

@@ -1,0 +1,177 @@
+:host {
+  display: block;
+  min-height: 80vh;
+  background: #f5f7fb;
+}
+
+.payment-page {
+  padding-top: 120px !important;
+}
+
+.payment-card {
+  max-width: 590px;
+  padding: 30px;
+  border: 1px solid #e5e9f2;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 48px #18204412;
+}
+
+.payment-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.payment-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 14px;
+  color: #255c7e;
+  background: #e8f1f8;
+  font-size: 23px;
+}
+
+.eyebrow {
+  margin: 0 0 3px;
+  color: #6c7487;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+h1 {
+  margin: 0;
+  color: #17173c;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.rental-summary {
+  display: grid;
+  gap: 13px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #f5f7fb;
+}
+
+.rental-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.rental-summary span {
+  color: #687086;
+}
+
+.rental-summary strong {
+  color: #20243a;
+  text-align: right;
+}
+
+.rental-summary .total-row {
+  padding-top: 12px;
+  border-top: 1px solid #dce2ed;
+  font-size: 15px;
+}
+
+.total-row strong {
+  color: #255c7e;
+  font-size: 18px;
+}
+
+.payment-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.payment-form .form-label {
+  margin: 5px 0 0;
+  color: #30364b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.demo-notice {
+  margin-bottom: 8px;
+  padding: 12px;
+  border: 1px solid #cfe2f2;
+  border-radius: 10px;
+  color: #255c7e;
+  background: #f0f7fc;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.pay-button {
+  margin-top: 12px;
+  padding: 12px;
+  border: 0;
+  border-radius: 9px;
+  color: #fff;
+  background: #255c7e;
+  font-weight: 700;
+}
+
+.pay-button:hover:not(:disabled) {
+  color: #fff;
+  background: #17455c;
+}
+
+.pay-button:disabled {
+  color: #fff;
+  background: #9ba8b0;
+}
+
+.test-card-hint {
+  margin: 0;
+  color: #72798a;
+  font-size: 11px;
+  text-align: center;
+}
+
+.payment-result {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.payment-result.success {
+  color: #176341;
+  background: #eaf8f0;
+}
+
+.payment-result.failure {
+  color: #923d36;
+  background: #fff0ee;
+}
+
+.status-message {
+  color: #687086;
+}
+
+@media (max-width: 575px) {
+  .payment-card {
+    padding: 22px 18px;
+  }
+
+  .rental-summary div {
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .rental-summary strong {
+    text-align: left;
+  }
+}

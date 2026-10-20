@@ -1,40 +1,26 @@
 import { Routes } from '@angular/router';
-import { InicioComponente } from './inicio-componente/inicio-componente';
-import { InicioSesion } from './inicio-sesion/inicio-sesion';
-import { ContactoComponente } from './contacto-componente/contacto-componente';
-import { RegistroUsuario } from './registro-usuario/registro-usuario';
-import { AdministradorComponente } from './administrador-componente/administrador-componente';
-import { UsuarioCrudComp } from './usuario-crud-comp/usuario-crud-comp';
-import { AlquilerComponente } from './alquiler-componente/alquiler-componente';
-import { EntregarVehiculoComponente } from './entrega-vehiculo-componente/entrega-vehiculo-componente';
-import { CatalogoComponent } from './catalogo/catalogo';
-import { TipoVehiculosComponent } from './tipo-vehiculos/tipo-vehiculos';
-import { NoticiasComponent } from './noticias/noticias';
-import { VehiculoComponente } from './vehiculo-componente/vehiculo-componente';
-import { VehiculoComponenteAdmi } from './vehiculo-componente-admi/vehiculo-componente-admi';
-import { DashboardAdminComponente } from './dashboard-admin-componente/dashboard-admin-componente';
-import { DevolucionesComponente} from './devoluciones-componente/devoluciones-componente';
-import { CancelarAlquilerComponente } from './cancelar-alquiler-componente/cancelar-alquiler-componente';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-    { path: "inicio", component: InicioComponente},
-    { path: "login", component: InicioSesion},
-    { path: "registro", component: RegistroUsuario},
-    { path: "contacto", component: ContactoComponente},
-    { path: "ADMINISTRADOR", component: AdministradorComponente},
-    { path: "dashboardAdmin", component: DashboardAdminComponente},
-    { path: "EntregarVehiculo", component: EntregarVehiculoComponente},
-    {path: "crudUsuario", component: UsuarioCrudComp},
-    { path: "catalogo", component: CatalogoComponent},
-    { path: "noticias", component: NoticiasComponent},
-    { path: 'crud', component: UsuarioCrudComp},
-    { path: "tipos", component: TipoVehiculosComponent},
-    { path: 'vehiculos-por/:tipo', component: VehiculoComponente },
-    { path: 'vehiculosAdmin', component: VehiculoComponenteAdmi },
-    { path: "crudUsuario", component: UsuarioCrudComp },
-    { path: "devoluciones", component: DevolucionesComponente},
-    { path: "misAlquileres", component: CancelarAlquilerComponente},
-    { path: 'alquiler', component: AlquilerComponente },
-
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+  { path: 'inicio', loadComponent: () => import('./inicio-componente/inicio-componente').then(m => m.InicioComponente) },
+  { path: 'login', loadComponent: () => import('./inicio-sesion/inicio-sesion').then(m => m.InicioSesion) },
+  { path: 'registro', loadComponent: () => import('./registro-usuario/registro-usuario').then(m => m.RegistroUsuario) },
+  { path: 'contacto', loadComponent: () => import('./contacto-componente/contacto-componente').then(m => m.ContactoComponente) },
+  { path: 'ADMINISTRADOR', loadComponent: () => import('./administrador-componente/administrador-componente').then(m => m.AdministradorComponente) },
+  { path: 'dashboardAdmin', loadComponent: () => import('./dashboard-admin-componente/dashboard-admin-componente').then(m => m.DashboardAdminComponente) },
+  { path: 'inicioAdmin', redirectTo: 'dashboardAdmin', pathMatch: 'full' },
+  { path: 'EntregarVehiculo', loadComponent: () => import('./entrega-vehiculo-componente/entrega-vehiculo-componente').then(m => m.EntregarVehiculoComponente) },
+  { path: 'crudUsuario', loadComponent: () => import('./usuario-crud-comp/usuario-crud-comp').then(m => m.UsuarioCrudComp) },
+  { path: 'catalogo', loadComponent: () => import('./catalogo/catalogo').then(m => m.CatalogoComponent) },
+  { path: 'noticias', loadComponent: () => import('./noticias/noticias').then(m => m.NoticiasComponent) },
+  { path: 'crud', loadComponent: () => import('./usuario-crud-comp/usuario-crud-comp').then(m => m.UsuarioCrudComp) },
+  { path: 'tipos', loadComponent: () => import('./tipo-vehiculos/tipo-vehiculos').then(m => m.TipoVehiculosComponent) },
+  { path: 'vehiculos-por/:tipo', loadComponent: () => import('./vehiculo-componente/vehiculo-componente').then(m => m.VehiculoComponente) },
+  { path: 'vehiculosAdmin', loadComponent: () => import('./vehiculo-componente-admi/vehiculo-componente-admi').then(m => m.VehiculoComponenteAdmi) },
+  { path: 'devoluciones', loadComponent: () => import('./devoluciones-componente/devoluciones-componente').then(m => m.DevolucionesComponente) },
+  { path: 'misAlquileres', loadComponent: () => import('./cancelar-alquiler-componente/cancelar-alquiler-componente').then(m => m.CancelarAlquilerComponente) },
+  { path: 'pago/:id', loadComponent: () => import('./pago/pago').then(m => m.PagoComponente) },
+  { path: 'vehiculoAdmin', loadComponent: () => import('./vehiculo-componente-admi/vehiculo-componente-admi').then(m => m.VehiculoComponenteAdmi) },
+  { path: 'tipoVehiculo', loadComponent: () => import('./tipo-vehiculos/tipo-vehiculos').then(m => m.TipoVehiculosComponent) },
+  { path: 'alquiler', loadComponent: () => import('./alquiler-componente/alquiler-componente').then(m => m.AlquilerComponente) },
 ];
